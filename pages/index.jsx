@@ -3,8 +3,9 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Layout from "../components/Layout";
 import css from "../styles/Home.module.css";
+import { client } from "../lib/client";
 
-const Home = () => {
+const Home = ({ pizzas }) => {
   return (
     <Layout>
       <div className={css.container}>
@@ -24,3 +25,13 @@ const Home = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = async () => {
+  const query = '*[_type=="pizza"]';
+  const pizzas = await client.fetch(query);
+  return {
+    props: {
+      pizzas,
+    },
+  };
+};
