@@ -25,6 +25,7 @@
   flex: 1;
   justify-content: center;
   z-index: 99;
+  font-weight: 600;
 }
 
 .menu>li:hover{
