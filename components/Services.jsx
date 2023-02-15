@@ -1,4 +1,3 @@
-import { UilFacebook, UilGithub, UilInstagram } from "@iconscout/react-unicons";
 import css from "../styles/Services.module.css";
 import s1 from "../assets/s1.png";
 import s2 from "../assets/s2.png";
@@ -8,7 +7,7 @@ import Image from "next/image";
 const Services = () => {
   return (
     <>
-      <div className={`${css.heading} mt-40 z-[999]`}>
+      <div className={`${css.heading} mt-40`}>
         <span>WHAT WE SERVE</span>
         <span>Your Favorite Food</span>
         <span>Delivery Partner</span>
@@ -44,6 +43,7 @@ const Services = () => {
             Not only for us, quality is also number one
           </span>
         </div>
+
       </div>
     </>
   );

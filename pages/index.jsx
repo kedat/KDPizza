@@ -4,6 +4,7 @@ import Services from "../components/Services";
 import Layout from "../components/Layout";
 import css from "../styles/Home.module.css";
 import { client } from "../lib/client";
+import Menu from "../components/Menu";
 
 const Home = ({ pizzas }) => {
   return (
@@ -18,6 +19,7 @@ const Home = ({ pizzas }) => {
         <main>
           <Hero />
           <Services />
+          <Menu pizzas={pizzas}/>
         </main>
       </div>
     </Layout>
