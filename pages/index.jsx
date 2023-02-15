@@ -12,7 +12,7 @@ const Home = () => {
         </Head>
         {/* body */}
         <main>
-          <h1>Welcome to my project</h1>
+          <h1 className="text-[40px]">Welcome to my project</h1>
         </main>
       </div>
     </Layout>

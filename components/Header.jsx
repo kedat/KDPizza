@@ -22,7 +22,7 @@ const Header = () => {
       <div className={css.rightSide}>
         <div className={css.card}>
           <UilShoppingBag size={35} color="2E2E2E" />
-          <div className="css.badge">1</div>
+          <div className={css.badge}>1</div>
         </div>
       </div>
     </div>
