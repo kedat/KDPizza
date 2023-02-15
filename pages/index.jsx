@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Hero from "../components/Hero";
+import Services from "../components/Services";
 import Layout from "../components/Layout";
 import css from "../styles/Home.module.css";
 
@@ -15,6 +16,7 @@ const Home = () => {
         {/* body */}
         <main>
           <Hero />
+          <Services />
         </main>
       </div>
     </Layout>
