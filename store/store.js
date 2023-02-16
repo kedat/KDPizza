@@ -7,6 +7,7 @@ export const useStore = create((set) => ({
   },
 
   // add Pizzas to cart
+  // test commit
   addPizza: (data) =>
     set((state) => ({
       cart: {
