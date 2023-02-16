@@ -5,6 +5,8 @@ import { client, urlFor } from "../../lib/client";
 import LeftArrow from "../../assets/arrowLeft.png";
 import RightArrow from "../../assets/arrowRight.png";
 import { useCallback, useState } from "react";
+import { useStore } from "../../store/store";
+import toast, { Toaster } from "react-hot-toast";
 
 const Pizza = ({ pizza }) => {
   const src = urlFor(pizza.image).url();
@@ -28,6 +30,17 @@ const Pizza = ({ pizza }) => {
       : setQuantity((pre) => pre - 1);
   }, []);
 
+  // add to card function
+  const addPizza = useStore((State) => State.addPizza);
+  const addToCard = useCallback(() => {
+    addPizza({
+      ...pizza,
+      price: pizza.price[size],
+      quantity: quantity,
+      size: size,
+    });
+    toast.success("Added to card!");
+  }, []);
   return (
     <Layout>
       <div className={css.container}>
@@ -98,8 +111,11 @@ const Pizza = ({ pizza }) => {
             </div>
           </div>
           {/* button */}
-          <div className={`btn ${css.btn}`}>Add to Card</div>
+          <div className={`btn ${css.btn}`} onClick={addToCard}>
+            Add to Card
+          </div>
         </div>
+        <Toaster />
       </div>
     </Layout>
   );
