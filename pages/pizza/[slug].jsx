@@ -40,7 +40,7 @@ const Pizza = ({ pizza }) => {
       size: size,
     });
     toast.success("Added to card!");
-  }, []);
+  }, [size, quantity]);
   return (
     <Layout>
       <div className={css.container}>
