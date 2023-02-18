@@ -26,6 +26,7 @@ const Menu = ({ pizzas }) => {
                     objectFit="cover"
                     layout="fill"
                     className="hover:scale-[1.1] hover:cursor-pointer"
+                    unoptimized
                   />
                 </div>
               </Link>

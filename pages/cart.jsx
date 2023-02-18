@@ -3,12 +3,14 @@ import Layout from "../components/Layout";
 import Image from "next/image";
 import { useStore } from "../store/store";
 import { urlFor } from "../lib/client";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import OrderModal from "../components/OrderModal";
 
-const Hero = () => {
+const Cart = () => {
   const CartData = useStore((state) => state.cart);
   const removePizza = useStore((state) => state.removePizza);
+  const [paymentMethod, setPaymentMethod] = useState(0);
   const onHandleClickRemove = useCallback((e) => {
     removePizza(e.target.id);
     toast.error("Item removed");
@@ -18,6 +20,11 @@ const Hero = () => {
     () => CartData.pizzas.reduce((a, b) => a + b.quantity * b.price, 0),
     [CartData]
   );
+
+  const onHandleDelivery = useCallback(() => {
+    setPaymentMethod(0);
+    localStorage.setItem("total", total());
+  });
   return (
     <Layout>
       <div className={css.container}>
@@ -48,6 +55,7 @@ const Hero = () => {
                           objectFit="cover"
                           width={85}
                           height={85}
+                          unoptimized
                         />
                       </td>
                       <td className="w-[15%]">{pizza.name}</td>
@@ -88,13 +96,21 @@ const Hero = () => {
             </div>
           </div>
           <div className={css.buttons}>
-            <button className="btn">Pay on Delivery</button>
+            <button className="btn" onClick={onHandleDelivery}>
+              Pay on Delivery
+            </button>
             <button className="btn">Pay now</button>
           </div>
         </div>
       </div>
       <Toaster />
+      {/* Modal */}
+      <OrderModal
+        opened={paymentMethod === 0}
+        paymentMethod={paymentMethod}
+        setOpened={setPaymentMethod}
+      />
     </Layout>
   );
 };
-export default Hero;
+export default Cart;
