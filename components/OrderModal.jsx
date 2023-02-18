@@ -2,10 +2,12 @@ import css from "../styles/OpenModal.module.css";
 import { useMantineTheme, Modal } from "@mantine/core";
 import { useCallback, useState } from "react";
 import { createOrder } from "../lib/orderHandle";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useStore } from "../store/store";
+import { useRouter } from "next/router";
 
 const OrderModal = ({ opened, setOpened, paymentMethod }) => {
+  const router = useRouter();
   const theme = useMantineTheme();
   const [formData, setFormData] = useState({});
   const total = typeof window !== "undefined" && localStorage.getItem("total");
@@ -17,12 +19,12 @@ const OrderModal = ({ opened, setOpened, paymentMethod }) => {
     async (e) => {
       e.preventDefault();
       const id = await createOrder({ ...formData, total, paymentMethod });
-      // console.log("🚀 ~ file: OrderModal.jsx:19 ~ handleSubmit ~ formData", formData)
       toast.success("Order Placed");
       resetCart();
       {
         typeof window !== "undefined" && localStorage.setItem("order", id);
       }
+      router.push(`/order/${id}`);
     },
     [formData, total, paymentMethod]
   );
