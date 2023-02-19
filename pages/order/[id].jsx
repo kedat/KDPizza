@@ -19,6 +19,8 @@ export const getServerSideProps = async ({ params }) => {
 };
 const Orders = ({ order }) => {
   useEffect(() => {
+  console.log("🚀 ~ file: [id].jsx:14 ~ getServerSideProps ~ order", order);
+
     if (order.status > 3) {
       localStorage.clear();
     }
@@ -58,7 +60,7 @@ const Orders = ({ order }) => {
             {order.method === 0 ? (
               <span className={css.pending}> On Delivery</span>
             ) : (
-              <span className={css.com[leted]}>Completed</span>
+              <span className={css.completed}>Completed</span>
             )}
           </div>
 

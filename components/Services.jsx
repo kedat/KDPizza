@@ -43,7 +43,6 @@ const Services = () => {
             Not only for us, quality is also number one
           </span>
         </div>
-
       </div>
     </>
   );

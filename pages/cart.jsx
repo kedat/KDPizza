@@ -6,11 +6,17 @@ import { urlFor } from "../lib/client";
 import { useCallback, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import OrderModal from "../components/OrderModal";
+import { useRouter } from "next/router";
+import Orders from "./order/[id]";
 
 const Cart = () => {
   const CartData = useStore((state) => state.cart);
+  const router = useRouter();
   const removePizza = useStore((state) => state.removePizza);
   const [paymentMethod, setPaymentMethod] = useState(0);
+  const [order, setOrder] = useState(
+    typeof window !== "undefined" && localStorage.getItem("order")
+  );
   const onHandleClickRemove = useCallback((e) => {
     removePizza(e.target.id);
     toast.error("Item removed");
@@ -23,8 +29,25 @@ const Cart = () => {
 
   const onHandleDelivery = useCallback(() => {
     setPaymentMethod(0);
-    localStorage.setItem("total", total());
-  });
+    typeof window !== "undefined" && localStorage.setItem("total", total());
+  }, []);
+
+  const onHandleCheckout = useCallback(async () => {
+    typeof window !== "undefined" && localStorage.setItem("total", total());
+    setPaymentMethod(1);
+    const response = await fetch("api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(CartData.pizzas),
+    });
+    if (response.status === 500) return;
+    const data = await response.json();
+    toast.loading("Redirecting...");
+    router.push(data.url);
+  }, []);
+
   return (
     <Layout>
       <div className={css.container}>
@@ -95,12 +118,16 @@ const Cart = () => {
               <span>$ {total()}</span>
             </div>
           </div>
-          <div className={css.buttons}>
-            <button className="btn" onClick={onHandleDelivery}>
-              Pay on Delivery
-            </button>
-            <button className="btn">Pay now</button>
-          </div>
+          {!order && CartData.pizzas.length > 0 ? (
+            <div className={css.buttons}>
+              <button className="btn" onClick={onHandleDelivery}>
+                Pay on Delivery
+              </button>
+              <button className="btn" onClick={onHandleCheckout}>
+                Pay now
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
       <Toaster />
