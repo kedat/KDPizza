@@ -43,8 +43,8 @@ const Pizza = ({ pizza }) => {
   }, [size, quantity]);
   return (
     <Layout>
-      <div className={css.container}>
-        <div className={css.imageWrapper}>
+      <div className={`${css.container} flex-col md:flex-row items-center`}>
+        <div className={`${css.imageWrapper} md:w-[40%] w-full`}>
           <Image
             loader={() => src}
             src={src}
@@ -56,14 +56,14 @@ const Pizza = ({ pizza }) => {
         </div>
 
         {/* right side */}
-        <div className={css.right}>
+        <div className={`${css.right} mx-10 `}>
           <span>{pizza.name}</span>
           <span>{pizza.details}</span>
 
           <span>
             <span className="text-red-500">$</span> {pizza.price[size]}
           </span>
-          <div className="flex gap-[3rem] font-semibold text-[1.6rem]">
+          <div className="flex md:gap-[1rem] font-semibold text-[1.6rem] flex-col ">
             <span>Size</span>
             <div className={css.sizeVariants}>
               <div
@@ -88,7 +88,7 @@ const Pizza = ({ pizza }) => {
           </div>
 
           {/* Quantity counter */}
-          <div className={css.quantity}>
+          <div className={`${css.quantity} my-3`}>
             <span>Quantity</span>
             <div className={css.counter}>
               <Image

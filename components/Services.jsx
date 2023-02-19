@@ -7,14 +7,14 @@ import Image from "next/image";
 const Services = () => {
   return (
     <>
-      <div className={`${css.heading} mt-40`}>
+      <div className={`${css.heading} mt-10`}>
         <span>WHAT WE SERVE</span>
         <span>Your Favorite Food</span>
         <span>Delivery Partner</span>
       </div>
       {/* features */}
-      <div className="flex justify-center mt-10">
-        <div className={css.feature}>
+      <div className="flex justify-center mt-10 flex-col lg:flex-row">
+        <div className={`${css.feature} mb-20`}>
           <div className={css.ImageWrapper}>
             <Image src={s1} alt="s1" objectFit="cover" layout="intrinsic" />
           </div>
@@ -24,7 +24,7 @@ const Services = () => {
           </span>
         </div>
 
-        <div className={css.feature}>
+        <div className={`${css.feature} mb-20`}>
           <div className={css.ImageWrapper}>
             <Image src={s2} alt="s2" objectFit="cover" layout="intrinsic" />
           </div>
@@ -34,7 +34,8 @@ const Services = () => {
           </span>
         </div>
 
-        <div className={css.feature}>
+        <div className={`${css.feature} mb-20`}>
+
           <div className={css.ImageWrapper}>
             <Image src={s3} alt="s3" objectFit="cover" layout="intrinsic" />
           </div>

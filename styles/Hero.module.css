@@ -27,7 +27,6 @@
 .heroText {
   display: flex;
   flex-direction: column;
-  font-size: 4rem;
 }
 
 .miniText {
@@ -39,13 +38,9 @@
   padding: 1rem 2.5rem;
 }
 
-.right {
-  position: relative;
-}
-
 .imageContainer {
   width: 48rem;
-  position: absolute;
+  /* position: absolute; */
   top: -5rem;
 }
 
@@ -53,7 +48,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
   width: max-content;
   padding: 1rem;
   border-radius: 5rem;
@@ -87,7 +81,6 @@
   box-shadow: var(--shadow);
   padding: 0.5rem;
   border-radius: 0.5rem;
-  position: absolute;
   bottom: 9rem;
   left: 29rem;
   width: max-content;

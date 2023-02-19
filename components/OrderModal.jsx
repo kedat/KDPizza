@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { useStore } from "../store/store";
 import { useRouter } from "next/router";
 
-const OrderModal = ({ opened, setOpened, paymentMethod }) => {
+const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
   const router = useRouter();
   const theme = useMantineTheme();
   const [formData, setFormData] = useState({});

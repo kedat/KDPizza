@@ -13,7 +13,7 @@ const Cart = () => {
   const CartData = useStore((state) => state.cart);
   const router = useRouter();
   const removePizza = useStore((state) => state.removePizza);
-  const [paymentMethod, setPaymentMethod] = useState(0);
+  const [paymentMethod, setPaymentMethod] = useState(1);
   const [order, setOrder] = useState(
     typeof window !== "undefined" && localStorage.getItem("order")
   );

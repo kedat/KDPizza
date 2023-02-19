@@ -7,8 +7,8 @@ const Menu = ({ pizzas }) => {
   return (
     <div className={css.container}>
       <div className={css.heading}>
-        <span className="text-red-500 text-[1rem] mb-[2rem]">OUR MENU</span>
-        <span className="text-[2rem]">Menu That </span>
+        <span className="text-red-500 text-[1rem] mb-[2rem] -mt-20">OUR MENU</span>
+        <span className="text-[2rem]">Menu That Always</span>
         <span className="text-[2rem]">Make you Fall in Love</span>
       </div>
       {/* pizzas */}
@@ -16,7 +16,7 @@ const Menu = ({ pizzas }) => {
         {pizzas.map((pizza, id) => {
           const src = urlFor(pizza.image).url();
           return (
-            <div className={css.pizza} key={id}>
+            <div className={`${css.pizza}`} key={id}>
               <Link href={`./pizza/${pizza.slug.current}`}>
                 <div className={css.ImageWrapper}>
                   <Image
