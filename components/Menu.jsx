@@ -8,7 +8,7 @@ const Menu = ({ pizzas }) => {
     <div className={css.container}>
       <div className={css.heading}>
         <span className="text-red-500 text-[1rem] mb-[2rem]">OUR MENU</span>
-        <span className="text-[2rem]">Menu That Always</span>
+        <span className="text-[2rem]">Menu That </span>
         <span className="text-[2rem]">Make you Fall in Love</span>
       </div>
       {/* pizzas */}
