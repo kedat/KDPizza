@@ -1,7 +1,7 @@
 .container {
-  display: grid;
+  /* display: grid; */
   padding: 2rem;
-  grid-template-columns: 2.2fr 1fr;
+  /* grid-template-columns: 2.2fr 1fr; */
   gap: 2rem;
 }
 
@@ -9,6 +9,7 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 1rem;
+  overflow: scroll;
 }
 
 .tbody tr td {

@@ -51,7 +51,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className={`${css.Pizza} !hidden lg:block lg:absolute`}>
+          <div className={`${css.Pizza} !hidden lg:!block lg:absolute`}>
             <div>
               <Image
                 src={Pizza}
