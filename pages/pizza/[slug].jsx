@@ -5,10 +5,12 @@ import { client, urlFor } from "../../lib/client";
 import LeftArrow from "../../assets/arrowLeft.png";
 import RightArrow from "../../assets/arrowRight.png";
 import { useCallback, useState } from "react";
-import { useStore } from "../../store/store";
+import { addPizza } from "../../store/store";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 const Pizza = ({ pizza }) => {
+	const dispatch = useDispatch();
 	const src = urlFor(pizza.image).url();
 	const [quantity, setQuantity] = useState(1);
 	const [size, setSize] = useState(1);
@@ -23,7 +25,6 @@ const Pizza = ({ pizza }) => {
 	}, []);
 	const handleQuantity = useCallback(
 		(type) => {
-			// quantity<1?setQuantity(1):''
 			type === "inc"
 				? setQuantity((pre) => pre + 1)
 				: quantity === 1
@@ -34,16 +35,17 @@ const Pizza = ({ pizza }) => {
 	);
 
 	// add to card function
-	const addPizza = useStore((State) => State.addPizza);
 	const addToCard = useCallback(() => {
-		addPizza({
-			...pizza,
-			price: pizza.price[size],
-			quantity: quantity,
-			size: size,
-		});
+		dispatch(
+			addPizza({
+				...pizza,
+				price: pizza.price[size],
+				quantity: quantity,
+				size: size,
+			})
+		);
 		toast.success("Added to card!");
-	}, [addPizza, pizza, size, quantity]);
+	}, [dispatch, pizza, size, quantity]);
 	return (
 		<Layout>
 			<div className={`${css.container} flex-col md:flex-row items-center`}>

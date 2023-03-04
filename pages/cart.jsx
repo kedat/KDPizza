@@ -1,27 +1,28 @@
 import css from "../styles/Cart.module.css";
 import Layout from "../components/Layout";
 import Image from "next/image";
-import { useStore } from "../store/store";
 import { urlFor } from "../lib/client";
 import { useCallback, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import OrderModal from "../components/OrderModal";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { removePizza } from "../store/store";
 
 const Cart = () => {
-	const CartData = useStore((state) => state.cart);
+	const dispatch = useDispatch();
 	const router = useRouter();
-	const removePizza = useStore((state) => state.removePizza);
+	const CartData = useSelector((state) => state.cart);
 	const [paymentMethod, setPaymentMethod] = useState(1);
 	const [order, setOrder] = useState(
 		typeof window !== "undefined" && localStorage.getItem("order")
 	);
 	const onHandleClickRemove = useCallback(
 		(e) => {
-			removePizza(e.target.id);
+			dispatch(removePizza(e.target.id));
 			toast.error("Item removed");
 		},
-		[removePizza]
+		[dispatch]
 	);
 
 	const total = useCallback(
@@ -52,7 +53,9 @@ const Cart = () => {
 
 	return (
 		<Layout>
-			<div className={`${css.container} !flex flex-col md:grid !md:grid-cols-2 `}>
+			<div
+				className={`${css.container} !flex flex-col md:grid !md:grid-cols-2 `}
+			>
 				{/* detail */}
 				<div className={css.detail}>
 					<table className={css.table}>

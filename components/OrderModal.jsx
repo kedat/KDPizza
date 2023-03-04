@@ -3,77 +3,81 @@ import { useMantineTheme, Modal } from "@mantine/core";
 import { useCallback, useState } from "react";
 import { createOrder } from "../lib/orderHandle";
 import { toast } from "react-hot-toast";
-import { useStore } from "../store/store";
 import { useRouter } from "next/router";
+import { resetCart } from "../store/store";
+import { useDispatch } from "react-redux";
 
 const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
-  const router = useRouter();
-  const theme = useMantineTheme();
-  const [formData, setFormData] = useState({});
-  const total = typeof window !== "undefined" && localStorage.getItem("total");
-  const handleInputChange = useCallback((e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  });
+	const dispatch = useDispatch();
+	const router = useRouter();
+	const theme = useMantineTheme();
+	const [formData, setFormData] = useState({});
+	const total = typeof window !== "undefined" && localStorage.getItem("total");
+	const handleInputChange = useCallback(
+		(e) => {
+			setFormData({ ...formData, [e.target.name]: e.target.value });
+		},
+		[formData]
+	);
 
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      const id = await createOrder({ ...formData, total, paymentMethod });
-      toast.success("Order Placed");
-      resetCart();
-      {
-        typeof window !== "undefined" && localStorage.setItem("order", id);
-      }
-      router.push(`/order/${id}`);
-    },
-    [formData, total, paymentMethod]
-  );
+	const handleSubmit = useCallback(
+		async (e) => {
+			e.preventDefault();
+			const id = await createOrder({ ...formData, total, paymentMethod });
+			toast.success("Order Placed");
+			dispatch(resetCart());
+			{
+				typeof window !== "undefined" && localStorage.setItem("order", id);
+			}
+			router.push(`/order/${id}`);
+		},
+		[formData, total, paymentMethod, dispatch, router]
+	);
 
-  const resetCart = useStore((state) => state.resetCart);
-  return (
-    <Modal
-      overlayColor={
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[9]
-          : theme.colors.gray[2]
-      }
-      overlayOpacity={0.55}
-      overlayBlur={3}
-      opened={opened}
-      onClose={() => setOpened(null)}
-    >
-      {/* Modal content */}
-      <form onSubmit={handleSubmit} className={css.formContainer}>
-        <input
-          type="text"
-          name="name"
-          required
-          placeholder="Name"
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="phone"
-          required
-          placeholder="Phone number"
-          onChange={handleInputChange}
-        />
-        <textarea
-          name="address"
-          rows="3"
-          placeholder="Address"
-          onChange={handleInputChange}
-        ></textarea>
-        <span>
-          You will pay{" "}
-          <span className="font-bold text-red-500 text-[1.3rem]">${total}</span>{" "}
-          on delivery
-        </span>
-        <button type="submit" className="btn">
-          Place order
-        </button>
-      </form>
-    </Modal>
-  );
+	return (
+		<Modal
+			overlayColor={
+				theme.colorScheme === "dark"
+					? theme.colors.dark[9]
+					: theme.colors.gray[2]
+			}
+			overlayOpacity={0.55}
+			overlayBlur={3}
+			opened={opened}
+			onClose={() => setOpened(null)}
+		>
+			{/* Modal content */}
+			<form onSubmit={handleSubmit} className={css.formContainer}>
+				<input
+					type="text"
+					name="name"
+					required
+					placeholder="Name"
+					onChange={handleInputChange}
+				/>
+				<input
+					type="text"
+					name="phone"
+					required
+					placeholder="Phone number"
+					onChange={handleInputChange}
+				/>
+				<textarea
+					name="address"
+					rows={3}
+					placeholder="Address"
+					onChange={handleInputChange}
+				></textarea>
+				<span>
+					You will pay{" "}
+					<span className="font-bold text-red-500 text-[1.3rem]">${total}</span>{" "}
+					on delivery
+				</span>
+				<button type="submit" className="btn">
+					Place order
+				</button>
+			</form>
+		</Modal>
+	);
 };
 export default OrderModal;

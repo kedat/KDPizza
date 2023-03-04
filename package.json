@@ -11,12 +11,12 @@
 	"dependencies": {
 		"@emotion/react": "^11.10.6",
 		"@emotion/styled": "^11.10.6",
-		"@iconscout/react-unicons": "^1.1.6",
+		"@iconscout/react-unicons": "^2.0.0",
 		"@mantine/core": "^4.2.12",
 		"@mantine/hooks": "^4.2.12",
 		"@mui/icons-material": "^5.11.9",
 		"@mui/material": "^5.11.9",
-		"@reduxjs/toolkit": "^1.9.2",
+		"@reduxjs/toolkit": "^1.9.3",
 		"@sanity/cli": "^3.3.1",
 		"@sanity/client": "^4.0.1",
 		"@sanity/image-url": "^1.0.2",
@@ -33,6 +33,8 @@
 		"zustand": "^4.0.0-rc.1"
 	},
 	"devDependencies": {
+		"@types/node": "^18.14.6",
+		"@types/react": "^18.0.28",
 		"autoprefixer": "^10.4.13",
 		"eslint": "8.19.0",
 		"eslint-config-next": "12.2.0",
