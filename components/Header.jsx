@@ -3,16 +3,26 @@ import css from "../styles/Header.module.css";
 import Logo from "../assets/Logo.png";
 import { UilShoppingBag, UilReceipt } from "@iconscout/react-unicons";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { authActions } from "../store/authSlice";
 
 const Header = () => {
+	const router = useRouter();
+	const dispatch = useDispatch();
 	const count = useSelector((state) => state.cart.pizzas.length);
 	// state
 	const [order, setOrder] = useState("");
 	useEffect(() => {
 		setOrder(localStorage.getItem("order"));
 	}, []);
+
+	const handleClickLogout = useCallback(() => {
+		dispatch(authActions.logout());
+		typeof window !== "undefined" && localStorage.setItem("isLogin", false);
+		router.push("/login");
+	}, [dispatch, router]);
 	return (
 		<div className={css.header}>
 			{/* logo side */}
@@ -44,6 +54,7 @@ const Header = () => {
 						</div>
 					</Link>
 				)}
+				<button onClick={handleClickLogout}>Log Out</button>
 			</div>
 		</div>
 	);

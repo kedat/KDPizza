@@ -33,14 +33,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	isCartOpen: false,
-	cart: [],
-	items: [],
-	value: 0,
+	isLogin: false,
 	pizzas: [],
 };
 
-export const cartSlice = createSlice({
+const cartSlice = createSlice({
 	name: "cart",
 	initialState,
 	reducers: {
@@ -60,4 +57,5 @@ export const cartSlice = createSlice({
 
 export const { resetCart, addPizza, removePizza } = cartSlice.actions;
 
-export default cartSlice.reducer;
+export default cartSlice;
+

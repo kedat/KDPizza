@@ -7,7 +7,7 @@ import { toast, Toaster } from "react-hot-toast";
 import OrderModal from "../components/OrderModal";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { removePizza } from "../store/store";
+import { removePizza } from "../store/cardSlice";
 
 const Cart = () => {
 	const dispatch = useDispatch();

@@ -7,8 +7,20 @@ import { client } from "../lib/client";
 import Menu from "../components/Menu";
 import MainCarousel from "../components/MainCarousel";
 import Logo from "../assets/Logo.png";
+import { useSelector } from "react-redux";
+import { Login } from "./login";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const Home = ({ pizzas }) => {
+	const router = useRouter();
+	const [isLogIn, setIsLogIn] = useState(false);
+
+	useEffect(() => {
+		setIsLogIn(localStorage.getItem("isLogin"));
+		isLogIn === "undefined" && router.push("/login");
+	}, [isLogIn, router]);
+
 	return (
 		<Layout>
 			<div className={css.container}>

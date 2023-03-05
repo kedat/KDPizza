@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { createOrder } from "../lib/orderHandle";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
-import { resetCart } from "../store/store";
+import { resetCart } from "../store/cardSlice";
 import { useDispatch } from "react-redux";
 
 const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
