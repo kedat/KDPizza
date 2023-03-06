@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Category from "../components/Category";
 
-const Home = ({ pizzas }) => {
+const Home = ({ pizzas, categories }) => {
 	const router = useRouter();
 	const [isLogIn, setIsLogIn] = useState(false);
 
@@ -41,7 +41,7 @@ const Home = ({ pizzas }) => {
 					<Category />
 					<Services />
 					<MainCarousel />
-					<Menu pizzas={pizzas} />
+					<Menu pizzas={pizzas} categories={categories} />
 				</main>
 			</div>
 		</Layout>
@@ -52,10 +52,13 @@ export default Home;
 
 export const getServerSideProps = async () => {
 	const query = '*[_type=="pizza"]';
+	const categoryQuery = '*[_type=="category"]';
 	const pizzas = await client.fetch(query);
+	const categories = await client.fetch(categoryQuery);
 	return {
 		props: {
 			pizzas,
+			categories,
 		},
 	};
 };
