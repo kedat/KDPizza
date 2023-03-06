@@ -1,3 +1,4 @@
-import pizza from './Pizza'
+import pizza from './pizza'
 import order from './order'
-export const schemaTypes = [pizza,order]
+import category from './category'
+export const schemaTypes = [pizza,order,category]

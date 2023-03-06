@@ -1,62 +1,66 @@
 .header {
+	position: fixed;
+	padding: 1rem;
+  top: 0;
+  background-color: white;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
+  z-index: 2;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 0.5rem;
+	flex: 1;
 }
 
 .logo > span {
-  font-weight: bold;
-  font-size: 1.5rem;
+	font-weight: bold;
+	font-size: 1.5rem;
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  flex: 1;
-  justify-content: center;
-  z-index: 99;
-  font-weight: 600;
+	display: flex;
+	list-style: none;
+	gap: 2rem;
+	flex: 1;
+	justify-content: center;
+	z-index: 99;
+	font-weight: 600;
 }
 
-.menu>li:hover{
-  cursor: pointer;
-  color: var(--themeRed);
+.menu > li:hover {
+	cursor: pointer;
+	color: var(--themeRed);
 }
 
 .rightSide {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  flex: 1;
+	display: flex;
+	gap: 1rem;
+	justify-content: flex-end;
+	flex: 1;
 }
 
 .cart {
-  position: relative;
-  display: flex;
-  cursor: pointer;
-  z-index: 99;
+	position: relative;
+	display: flex;
+	cursor: pointer;
+	z-index: 99;
 }
 
 .badge {
-  position: absolute;
-  display: flex;
-  background-color: var(--themeRed);
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  align-items: center;
-  justify-content: center;
-  top: 20px;
-  right: 10px;
+	position: absolute;
+	display: flex;
+	background-color: var(--themeRed);
+	color: white;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	align-items: center;
+	justify-content: center;
+	top: 20px;
+	right: 10px;
 }

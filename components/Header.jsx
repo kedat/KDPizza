@@ -24,7 +24,7 @@ const Header = () => {
 		router.push("/login");
 	}, [dispatch, router]);
 	return (
-		<div className={css.header}>
+		<div className={`${css.header} md:p-10 p-1 shadow-lg`}>
 			{/* logo side */}
 			<div className={css.logo}>
 				<Image src={Logo} alt="Logo" width={50} height={50} />

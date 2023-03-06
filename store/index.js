@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-import cartSlice from "./cardSlice";
+import cardSlice from "./cardSlice";
 import authSlice from "./authSlice"
 const store = configureStore({
   reducer: {
-    cart: cartSlice.reducer,
+    cart: cardSlice.reducer,
     auth: authSlice.reducer,
   },
 });

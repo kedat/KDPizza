@@ -48,7 +48,7 @@ const Pizza = ({ pizza }) => {
 	}, [dispatch, pizza, size, quantity]);
 	return (
 		<Layout>
-			<div className={`${css.container} flex-col md:flex-row items-center`}>
+			<div className={`${css.container} flex-col md:flex-row items-center `}>
 				<div className={`${css.imageWrapper} md:w-[40%] w-full`}>
 					<Image
 						loader={() => src}

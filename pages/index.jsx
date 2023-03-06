@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { Login } from "./login";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Category from "../components/Category";
 
 const Home = ({ pizzas }) => {
 	const router = useRouter();
@@ -37,6 +38,7 @@ const Home = ({ pizzas }) => {
 				{/* body */}
 				<main>
 					<Hero />
+					<Category />
 					<Services />
 					<MainCarousel />
 					<Menu pizzas={pizzas} />
