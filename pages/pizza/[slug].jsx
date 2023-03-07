@@ -1,6 +1,5 @@
 import css from "../../styles/Pizza.module.css";
 import Image from "next/image";
-import Layout from "../../components/Layout";
 import { client, urlFor } from "../../lib/client";
 import LeftArrow from "../../assets/arrowLeft.png";
 import RightArrow from "../../assets/arrowRight.png";
@@ -8,6 +7,7 @@ import { useCallback, useState } from "react";
 import { addPizza } from "../../store/cardSlice";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import Layout from "../../components/Layout/Layout";
 
 const Pizza = ({ pizza }) => {
 	const dispatch = useDispatch();

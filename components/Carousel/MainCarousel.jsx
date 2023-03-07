@@ -6,7 +6,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Image from "next/image";
 import img from "/assets/HeroImage.png";
 import Slider from "react-slick";
-import CardCell from "./cell";
+import CardCell from "./Cell";
 export const TRUSTPILOT_DATA = {
 	homepage: [
 		[

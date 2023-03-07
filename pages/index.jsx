@@ -1,17 +1,17 @@
 import Head from "next/head";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
-import Layout from "../components/Layout";
 import css from "../styles/Home.module.css";
 import { client } from "../lib/client";
 import Menu from "../components/Menu";
-import MainCarousel from "../components/MainCarousel";
+import MainCarousel from "../components/Carousel/MainCarousel";
 import Logo from "../assets/Logo.png";
 import { useSelector } from "react-redux";
 import { Login } from "./login";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Category from "../components/Category";
+import Layout from "../components/Layout/Layout";
 
 const Home = ({ pizzas, categories }) => {
 	const router = useRouter();

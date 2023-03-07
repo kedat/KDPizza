@@ -14,6 +14,6 @@ export default {
             title: 'name',
             type: 'string',
         },
-        
+
     ],
 }

@@ -1,12 +1,12 @@
 import Image from "next/image";
-import css from "../styles/Header.module.css";
-import Logo from "../assets/Logo.png";
+import css from "../../styles/Header.module.css";
+import Logo from "../../assets/Logo.png";
 import { UilShoppingBag, UilReceipt } from "@iconscout/react-unicons";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { authActions } from "../store/authSlice";
+import { authActions } from "../../store/authSlice";
 
 const Header = () => {
 	const router = useRouter();

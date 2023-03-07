@@ -1,5 +1,5 @@
 import css from "../styles/Cart.module.css";
-import Layout from "../components/Layout";
+
 import Image from "next/image";
 import { urlFor } from "../lib/client";
 import { useCallback, useState } from "react";
@@ -8,6 +8,7 @@ import OrderModal from "../components/OrderModal";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { removePizza } from "../store/cardSlice";
+import Layout from "../components/Layout/Layout";
 
 const Cart = () => {
 	const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import Layout from "../../components/Layout";
+
 import css from "../../styles/Order.module.css";
 import { client } from "../../lib/client";
 import { UilBill, UilBox } from "@iconscout/react-unicons";
@@ -7,6 +7,7 @@ import Cooking from "../../assets/cooking.png";
 import onWay from "../../assets/onway.png";
 import Spinner from "../../assets/spinner.svg";
 import { useEffect } from "react";
+import Layout from "../../components/Layout/Layout";
 
 export const getServerSideProps = async ({ params }) => {
 	const query = `*[_type=='order' && _id=='${params.id}']`;

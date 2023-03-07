@@ -1,5 +1,5 @@
 
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 import OrderModal from "../components/OrderModal";
 
 const Success = () => {
