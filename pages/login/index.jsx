@@ -15,7 +15,7 @@ const Login = ({ users }) => {
 	const [name, setName] = useState("");
 	const [pass, setPass] = useState("");
 	const [wrongInfo, setWrongInfo] = useState(false);
-	console.log("🚀 ~ file: index.jsx:17 ~ Login ~ wrongInfo:", wrongInfo);
+
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
