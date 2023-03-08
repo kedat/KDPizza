@@ -33,7 +33,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	isLogin: false,
 	pizzas: [],
 };
 

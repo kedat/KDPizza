@@ -13,7 +13,7 @@ import Layout from "../components/Layout/Layout";
 const Cart = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const CartData = useSelector((state) => state.cart);
+	const pizzas = useSelector((state) => state.cart.pizzas);
 	const [paymentMethod, setPaymentMethod] = useState(1);
 	const [order, setOrder] = useState(
 		typeof window !== "undefined" && localStorage.getItem("order")
@@ -27,8 +27,8 @@ const Cart = () => {
 	);
 
 	const total = useCallback(
-		() => CartData.pizzas.reduce((a, b) => a + b.quantity * b.price, 0),
-		[CartData]
+		() => pizzas.reduce((a, b) => a + b.quantity * b.price, 0),
+		[pizzas]
 	);
 
 	const onHandleDelivery = useCallback(() => {
@@ -44,13 +44,13 @@ const Cart = () => {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(CartData.pizzas),
+			body: JSON.stringify(pizzas),
 		});
 		if (response.status === 500) return;
 		const data = await response.json();
 		toast.loading("Redirecting...");
 		router.push(data.url);
-	}, [CartData.pizzas, router, total]);
+	}, [pizzas, router, total]);
 
 	return (
 		<Layout>
@@ -70,8 +70,8 @@ const Cart = () => {
 							<th></th>
 						</thead>
 						<tbody className={css.tbody}>
-							{CartData.pizzas.length > 0 &&
-								CartData.pizzas.map((pizza, index) => {
+							{pizzas.length > 0 &&
+								pizzas.map((pizza, index) => {
 									const src = urlFor(pizza.image).url();
 									return (
 										<tr key={index}>
@@ -119,14 +119,14 @@ const Cart = () => {
 					<div className={css.cartDetails}>
 						<div>
 							<span>Items</span>
-							<span>{CartData.pizzas.length}</span>
+							<span>{pizzas.length}</span>
 						</div>
 						<div>
 							<span>Total</span>
 							<span>$ {total()}</span>
 						</div>
 					</div>
-					{!order && CartData.pizzas.length > 0 ? (
+					{!order && pizzas.length > 0 ? (
 						<div className={css.buttons}>
 							<button className="btn" onClick={onHandleDelivery}>
 								Pay on Delivery

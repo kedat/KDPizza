@@ -14,7 +14,7 @@ const Menu = ({ pizzas, categories }) => {
 			return item;
 		}
 	});
-	console.log("🚀 ~ file: Menu.jsx:25 ~ newPizzas ~ newPizzas:", newPizzas);
+	
 	return (
 		<div className={css.container}>
 			<div className={css.heading}>

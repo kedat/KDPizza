@@ -21,7 +21,7 @@ export const getServerSideProps = async ({ params }) => {
 const Orders = ({ order }) => {
 	useEffect(() => {
 		if (order.status > 3) {
-			localStorage.clear();
+			localStorage.removeItem("order");
 		}
 	}, [order]);
 	return (

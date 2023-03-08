@@ -1,25 +1,36 @@
 import Image from "next/image";
 import css from "../../styles/Header.module.css";
 import Logo from "../../assets/Logo.png";
-import { UilShoppingBag, UilReceipt } from "@iconscout/react-unicons";
+import { UilShoppingBag, UilReceipt, UilUser } from "@iconscout/react-unicons";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { authActions } from "../../store/authSlice";
+import { logout } from "../../store/authSlice";
+import {
+	Dropdown,
+	DropdownItem,
+	DropdownMenu,
+	DropdownToggle,
+} from "reactstrap";
 
 const Header = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
-	const count = useSelector((state) => state.cart.pizzas.length);
+	const cartState = useSelector((state) => state.cart);
+	const authState = useSelector((state) => state.auth);
+	const count = cartState.pizzas.length;
+	const userName = authState.userName;
 	// state
 	const [order, setOrder] = useState("");
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const toggle = () => setDropdownOpen((prevState) => !prevState);
 	useEffect(() => {
 		setOrder(localStorage.getItem("order"));
 	}, []);
 
 	const handleClickLogout = useCallback(() => {
-		dispatch(authActions.logout());
+		dispatch(logout());
 		typeof window !== "undefined" && localStorage.setItem("isLogin", false);
 		router.push("/login");
 	}, [dispatch, router]);
@@ -54,7 +65,20 @@ const Header = () => {
 						</div>
 					</Link>
 				)}
-				<button onClick={handleClickLogout}>Log Out</button>
+
+				<Dropdown
+					isOpen={dropdownOpen}
+					toggle={toggle}
+					onClick={handleClickLogout}
+				>
+					<DropdownToggle caret size="sm">
+						{/* <UilUser size={15} color="2E2E2E" /> */}
+						{userName}
+					</DropdownToggle>
+					<DropdownMenu>
+						<DropdownItem>Action</DropdownItem>
+					</DropdownMenu>
+				</Dropdown>
 			</div>
 		</div>
 	);
