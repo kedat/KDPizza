@@ -7,7 +7,7 @@ import Image from "next/image";
 import img from "/assets/HeroImage.png";
 import Slider from "react-slick";
 import CardCell from "./Cell";
-export const TRUSTPILOT_DATA = {
+export const PIZZA_DATA = {
 	homepage: [
 		[
 			{
@@ -52,7 +52,7 @@ export const TRUSTPILOT_DATA = {
 	],
 };
 
-const { homepage } = TRUSTPILOT_DATA;
+const { homepage } = PIZZA_DATA;
 const SETTINGS = {
 	infinite: true,
 	slidesToShow: 3,

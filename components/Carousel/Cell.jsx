@@ -12,7 +12,7 @@ const CardCell = ({ customer, avatar, comment }) => {
 			<div className={`${mobile ? "h-[266px]" : ""} p-7 pb-10`}>
 				<div className="flex items-center mb-5">
 					<Image
-						alt="user-avatar-review-viewpals"
+						alt="user-avatar-review"
 						className="w-10 h-10 rounded-full"
 						src={avatar}
 						width="41"

@@ -5,7 +5,7 @@ const SetTheme = () => {
 	const { theme, setTheme } = useTheme();
 
 	return (
-		<div>
+		<div className="text-center">
 			{theme === "dark" ? (
 				<button button onClick={() => setTheme("light")}>
 					<UilSun />

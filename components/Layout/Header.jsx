@@ -48,8 +48,7 @@ const Header = () => {
 			{/* menu side */}
 			<ul className={css.menu}>
 				<Link href="../">Home</Link>
-				<Link href="../">Menu</Link>
-				<Link href="../">Contact</Link>
+				<Link href="contact">Contact</Link>
 			</ul>
 
 			{/* right side */}
@@ -68,32 +67,14 @@ const Header = () => {
 						</div>
 					</Link>
 				)}
-				<SetTheme />
-
-				{/* <Dropdown
-					isOpen={dropdownOpen}
-					toggle={toggle}
-					onClick={handleClickLogout}
-				>
-					<DropdownToggle caret size="sm">
-				
-						{userName}
-					</DropdownToggle>
-					<DropdownMenu>
-						<DropdownItem>Action</DropdownItem>
-					</DropdownMenu>
-				</Dropdown> */}
 				<div className="relative">
-					<Dropdown label="Dropdown">
+					<Dropdown label={userName.slice(0, 1)} className="flex justify-center items-center">
 						<Dropdown.Header>
 							<span className="block text-sm">{userName}</span>
-							{/* <span className="block truncate text-sm font-medium">
-								bonnie@flowbite.com
-							</span> */}
 						</Dropdown.Header>
 						<Dropdown.Item icon={UilUser}>Dashboard</Dropdown.Item>
 						<Dropdown.Item icon={UilSetting}>Settings</Dropdown.Item>
-						<Dropdown.Item icon={UilSetting}>Earnings</Dropdown.Item>
+						<SetTheme />
 						<Dropdown.Divider />
 						<Dropdown.Item icon={UilSignout} onClick={handleClickLogout}>
 							Sign out
