@@ -1,14 +1,13 @@
 import Image from "next/image";
 import css from "../../styles/Header.module.css";
 import Logo from "../../assets/Logo.png";
-import { UilShoppingBag, UilReceipt, UilUser } from "@iconscout/react-unicons";
+import { UilShoppingBag, UilReceipt, UilUser, UilSetting, UilSignout } from "@iconscout/react-unicons";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { logout } from "../../store/authSlice";
 import { DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
-
 import { Dropdown } from "flowbite-react";
 import SetTheme from "../SetTheme";
 
@@ -79,12 +78,19 @@ const Header = () => {
 					</DropdownMenu>
 				</Dropdown> */}
 				<div className="relative">
-			<Dropdown label="Dropdown button">
-				<Dropdown.Item>Dashboard</Dropdown.Item>
-				<Dropdown.Item>Settings</Dropdown.Item>
-				<Dropdown.Item>Earnings</Dropdown.Item>
-				<Dropdown.Item>Sign out</Dropdown.Item>
-				</Dropdown>
+					<Dropdown label="Dropdown">
+						<Dropdown.Header>
+							<span className="block text-sm">{userName}</span>
+							<span className="block truncate text-sm font-medium">
+								bonnie@flowbite.com
+							</span>
+						</Dropdown.Header>
+						<Dropdown.Item icon={UilUser} >Dashboard</Dropdown.Item>
+						<Dropdown.Item icon={UilSetting}>Settings</Dropdown.Item>
+						<Dropdown.Item icon={UilSetting}>Earnings</Dropdown.Item>
+						<Dropdown.Divider />
+						<Dropdown.Item icon={UilSignout}>Sign out</Dropdown.Item>
+					</Dropdown>
 				</div>
 			</div>
 		</div>

@@ -24,7 +24,7 @@ const Menu = ({ pizzas, categories }) => {
 				<span className="text-[2rem]">Menu That Always</span>
 				<span className="text-[2rem]">Make you Fall in Love</span>
 			</div>
-			<select className="w-50" onChange={onChangeCategory}>
+			<select className="w-48" onChange={onChangeCategory}>
 				<option value={0}>Default</option>
 				{categories.length > 0 &&
 					categories.map((category, id) => {

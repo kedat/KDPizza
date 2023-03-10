@@ -14,6 +14,7 @@ import Category from "../components/Category";
 import Layout from "../components/Layout/Layout";
 import { useTheme } from "next-themes";
 import SetTheme from "../components/SetTheme";
+import { Carousel } from "flowbite-react";
 
 const Home = ({ pizzas, categories }) => {
 	const router = useRouter();
@@ -39,7 +40,31 @@ const Home = ({ pizzas, categories }) => {
 				</Head>
 				{/* body */}
 				<main>
-					<Hero />
+					<div className="h-64 sm:h-80 xl:h-96 2xl:h-[700px] 2xl:-mt-20">
+						<Carousel slideInterval={5000}>
+							<img
+								src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
+								alt="..."
+							/>
+							<img
+								src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
+								alt="..."
+							/>
+							<img
+								src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
+								alt="..."
+							/>
+							<img
+								src="https://flowbite.com/docs/images/carousel/carousel-4.svg"
+								alt="..."
+							/>
+							<img
+								src="https://flowbite.com/docs/images/carousel/carousel-5.svg"
+								alt="..."
+							/>
+						</Carousel>
+					</div>
+					{/* <Hero /> */}
 					<Category />
 					<Services />
 					<MainCarousel />
