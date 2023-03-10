@@ -12,11 +12,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Category from "../components/Category";
 import Layout from "../components/Layout/Layout";
+import { useTheme } from "next-themes";
+import SetTheme from "../components/SetTheme";
 
 const Home = ({ pizzas, categories }) => {
 	const router = useRouter();
 	const [isLogIn, setIsLogIn] = useState(false);
-
+	const { theme, setTheme } = useTheme();
 	useEffect(() => {
 		setIsLogIn(localStorage.getItem("isLogin"));
 		isLogIn === "undefined" && router.push("/login");

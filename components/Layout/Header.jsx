@@ -7,12 +7,10 @@ import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { logout } from "../../store/authSlice";
-import {
-	Dropdown,
-	DropdownItem,
-	DropdownMenu,
-	DropdownToggle,
-} from "reactstrap";
+import { DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+
+import { Dropdown } from "flowbite-react";
+import SetTheme from "../SetTheme";
 
 const Header = () => {
 	const router = useRouter();
@@ -65,20 +63,29 @@ const Header = () => {
 						</div>
 					</Link>
 				)}
+				<SetTheme />
 
-				<Dropdown
+				{/* <Dropdown
 					isOpen={dropdownOpen}
 					toggle={toggle}
 					onClick={handleClickLogout}
 				>
 					<DropdownToggle caret size="sm">
-						{/* <UilUser size={15} color="2E2E2E" /> */}
+				
 						{userName}
 					</DropdownToggle>
 					<DropdownMenu>
 						<DropdownItem>Action</DropdownItem>
 					</DropdownMenu>
+				</Dropdown> */}
+				<div className="relative">
+			<Dropdown label="Dropdown button">
+				<Dropdown.Item>Dashboard</Dropdown.Item>
+				<Dropdown.Item>Settings</Dropdown.Item>
+				<Dropdown.Item>Earnings</Dropdown.Item>
+				<Dropdown.Item>Sign out</Dropdown.Item>
 				</Dropdown>
+				</div>
 			</div>
 		</div>
 	);

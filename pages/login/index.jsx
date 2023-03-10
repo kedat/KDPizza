@@ -15,23 +15,25 @@ const Login = ({ users }) => {
 	const [name, setName] = useState("");
 	const [pass, setPass] = useState("");
 	const [wrongInfo, setWrongInfo] = useState(false);
-
+	const [notExistsUser, setNotExistsUser] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		users.filter((user, id) => {
+		const existsUser = users.filter((user, id) => {
 			if (user.name == name && user.password == pass) {
-				setWrongInfo(false);
-				dispatch(login());
-				dispatch(setUser(user.name));
-				{
-					typeof window !== "undefined" &&
-						localStorage.setItem("isLogin", true);
-				}
-				router.push("/");
-				return;
-			} else setWrongInfo(true);
+				return user;
+			}
 		});
+		if (existsUser.length > 0) {
+			setWrongInfo(false);
+			dispatch(login());
+			dispatch(setUser(name));
+			{
+				typeof window !== "undefined" && localStorage.setItem("isLogin", true);
+			}
+			router.push("/");
+			return;
+		} else setWrongInfo(true);
 	};
 
 	return (
@@ -83,7 +85,7 @@ const Login = ({ users }) => {
 export default Login;
 
 export const getServerSideProps = async () => {
-	const userQuery = '*[_type=="users"]';
+	const userQuery = '*[_type=="user"]';
 	const users = await client.fetch(userQuery);
 	return {
 		props: {

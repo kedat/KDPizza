@@ -12,12 +12,14 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast, Toaster } from "react-hot-toast";
+import LoadingIcon from "../../assets/icon/loading.svg";
 
-const Form = ({ users }) => {
+const SignUp = ({ users }) => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const mobile = useWindowSize().width < 768;
 	const [loading, setLoading] = useState(false);
+	const [existsUser, setExistsUser] = useState(false);
 
 	const schema = yup.object().shape({
 		username: yup.string().required("Your Full Name is Required!"),
@@ -38,36 +40,28 @@ const Form = ({ users }) => {
 		resolver: yupResolver(schema),
 	});
 
-	// const handleSubmit = useCallback(
-	// 	async (e) => {
-	// 		e.preventDefault();
-	// 		// const id = await createAccount({ ...formData });
-	// 		console.log("🚀 ~ file: index.jsx:29 ~ id:", formData);
-
-	// 		// const id = await createOrder({ ...formData, total, paymentMethod });
-	// 		// toast.success("Order Placed");
-	// 		// dispatch(resetCart());
-	// 		// {
-	// 		// 	typeof window !== "undefined" && localStorage.setItem("order", id);
-	// 		// }
-	// 		// router.push(`/order/${id}`);
-	// 	},
-	// 	[formData]
-	// );
-
 	const onSubmit = useCallback(
 		async (data) => {
 			setLoading(true);
-			const id = await createAccount(data);
-			if (id) {
+			const existsUser = users.filter((user) => {
+				if (user.name === data.username) {
+					return user;
+				}
+			});
+			if (existsUser.length > 0) {
+				setExistsUser(true);
 				setLoading(false);
+			} else {
+				const id = await createAccount(data);
+				if (id) {
+					setLoading(false);
+				}
+				toast.success("Account created");
+				router.push("login");
 			}
-			toast.success("Account created");
-			router.push("login");
 		},
-		[router]
+		[router, users]
 	);
-	console.log("🚀 ~ file: index.jsx:21 ~ Form ~ loading:", loading);
 
 	return (
 		<section className=" md:mx-14 mx-3 bg-white ">
@@ -161,7 +155,7 @@ const Form = ({ users }) => {
 						"Sign up"
 					)}
 				</button>
-
+				{existsUser && <p>User already exists</p>}
 				<p className="md:mx-10 mx-2 text-center md:mt-6 mt-3 ">
 					By clicking the Sign Up button above, you agree to our Terms and
 					Conditions and Policy Privacy
@@ -177,10 +171,10 @@ const Form = ({ users }) => {
 	);
 };
 
-export default Form;
+export default SignUp;
 
 export const getServerSideProps = async () => {
-	const userQuery = '*[_type=="users"]';
+	const userQuery = '*[_type=="user"]';
 	const users = await client.fetch(userQuery);
 	return {
 		props: {
