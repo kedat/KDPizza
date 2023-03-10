@@ -40,7 +40,7 @@ const Home = ({ pizzas, categories }) => {
 				</Head>
 				{/* body */}
 				<main>
-					<div className="h-64 sm:h-80 xl:h-96 2xl:h-[700px] 2xl:-mt-20">
+					{/* <div className="h-64 sm:h-80 xl:h-96 2xl:h-[700px] 2xl:-mt-20">
 						<Carousel slideInterval={5000}>
 							<img
 								src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
@@ -63,9 +63,9 @@ const Home = ({ pizzas, categories }) => {
 								alt="..."
 							/>
 						</Carousel>
-					</div>
-					{/* <Hero /> */}
-					<Category />
+					</div> */}
+					<Hero />
+					{/* <Category /> */}
 					<Services />
 					<MainCarousel />
 					<Menu pizzas={pizzas} categories={categories} />

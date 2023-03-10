@@ -1,7 +1,13 @@
 import Image from "next/image";
 import css from "../../styles/Header.module.css";
 import Logo from "../../assets/Logo.png";
-import { UilShoppingBag, UilReceipt, UilUser, UilSetting, UilSignout } from "@iconscout/react-unicons";
+import {
+	UilShoppingBag,
+	UilReceipt,
+	UilUser,
+	UilSetting,
+	UilSignout,
+} from "@iconscout/react-unicons";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -81,15 +87,17 @@ const Header = () => {
 					<Dropdown label="Dropdown">
 						<Dropdown.Header>
 							<span className="block text-sm">{userName}</span>
-							<span className="block truncate text-sm font-medium">
+							{/* <span className="block truncate text-sm font-medium">
 								bonnie@flowbite.com
-							</span>
+							</span> */}
 						</Dropdown.Header>
-						<Dropdown.Item icon={UilUser} >Dashboard</Dropdown.Item>
+						<Dropdown.Item icon={UilUser}>Dashboard</Dropdown.Item>
 						<Dropdown.Item icon={UilSetting}>Settings</Dropdown.Item>
 						<Dropdown.Item icon={UilSetting}>Earnings</Dropdown.Item>
 						<Dropdown.Divider />
-						<Dropdown.Item icon={UilSignout}>Sign out</Dropdown.Item>
+						<Dropdown.Item icon={UilSignout} onClick={handleClickLogout}>
+							Sign out
+						</Dropdown.Item>
 					</Dropdown>
 				</div>
 			</div>
