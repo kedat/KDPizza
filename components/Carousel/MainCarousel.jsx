@@ -67,7 +67,6 @@ const SETTINGS = {
 	pauseOnFocus: false,
 	centerMode: true,
 	centerPadding: "0px",
-
 	responsive: [
 		{
 			breakpoint: 675,
