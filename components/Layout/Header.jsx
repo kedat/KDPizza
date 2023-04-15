@@ -25,6 +25,9 @@ const Header = () => {
   useEffect(() => {
     setOrder(localStorage.getItem('order'));
   }, []);
+  const onClickChangeLang = (l) => {
+    router.push('/', undefined, { locale: l });
+  };
 
   const handleClickLogout = useCallback(() => {
     dispatch(logout());
@@ -43,6 +46,16 @@ const Header = () => {
       <ul className={css.menu}>
         <Link href='../'>Home</Link>
         <Link href='contact'>Contact</Link>
+        <div>{router.locale}</div>
+        <div>
+          {router.locales.map((l, index) => (
+            <button className='pr-4' key={index}>
+              <Link href={`/`} locale={l}>
+                {l}
+              </Link>
+            </button>
+          ))}
+        </div>
       </ul>
 
       {/* right side */}
