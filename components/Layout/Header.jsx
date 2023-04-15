@@ -17,7 +17,12 @@ const Header = () => {
   const cartState = useSelector((state) => state.cart);
   const authState = useSelector((state) => state.auth);
   const count = cartState.pizzas.length;
-  const userName = authState.userName;
+
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    setUserName(typeof window !== 'undefined' && localStorage.getItem('username'));
+  }, []);
   // state
   const [order, setOrder] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -29,6 +34,7 @@ const Header = () => {
   const handleClickLogout = useCallback(() => {
     dispatch(logout());
     typeof window !== 'undefined' && localStorage.setItem('isLogin', false);
+    localStorage.removeItem('username');
     router.push('/login');
   }, [dispatch, router]);
   return (
@@ -43,6 +49,7 @@ const Header = () => {
       <ul className={css.menu}>
         <Link href='../'>Home</Link>
         <Link href='contact'>Contact</Link>
+        <Link href='faq'>FAQ</Link>
       </ul>
 
       {/* right side */}
@@ -62,7 +69,7 @@ const Header = () => {
           </Link>
         )}
         <div className='relative'>
-          <Dropdown label={userName.slice(0, 1)} className='flex justify-center items-center'>
+          <Dropdown label={userName ? userName.slice(0, 1) : ''} className='flex justify-center items-center'>
             <Dropdown.Header>
               <span className='block text-sm'>{userName}</span>
             </Dropdown.Header>
