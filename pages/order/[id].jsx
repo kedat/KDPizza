@@ -9,6 +9,7 @@ import { useCallback, useEffect } from 'react';
 import Layout from '../../components/Layout/Layout';
 import { cancelOrder } from '../../lib/orderHandle';
 import { toast, Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 export const getServerSideProps = async ({ params }) => {
   const query = `*[_type=='order' && _id=='${params.id}']`;
@@ -20,6 +21,8 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 const Orders = ({ order }) => {
+  console.log("🚀 ~ file: [id].jsx:24 ~ Orders ~ order:", order)
+  const router=useRouter()
   useEffect(() => {
     if (order.status > 3) {
       localStorage.removeItem('order');
@@ -27,25 +30,13 @@ const Orders = ({ order }) => {
   }, [order]);
 
   const onCancelOrder = useCallback(async () => {
-    console.log(order);
-    // const id = await cancelOrder({ ...order });
-    // const doc = {
-    //   _id: order._id,
-    //   _type: 'order',
-    //   name: 'order.name',
-    //   status: 5,
-    // };
-    // console.log('🚀 ~ file: [id].jsx:38 ~ onCancelOrder ~ doc:', doc);
-
-    // client.createOrReplace(doc).then((res) => {
-    //   console.log(`Bike was created, document ID is ${res._id}`);
-    // });
     client
       .patch(order._id)
       .inc({ status: 5 }) // Increment `price` by 88, `numSales` by 1
       .commit();
     toast.success('Canceled');
-  }, [order]);
+    router.push('/')
+  }, [order, router]);
 
   return (
     <Layout>

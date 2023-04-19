@@ -13,6 +13,7 @@ const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
 	const theme = useMantineTheme();
 	const [formData, setFormData] = useState({});
 	const total = typeof window !== "undefined" && localStorage.getItem("total");
+	const userName = typeof window !== "undefined" && localStorage.getItem("username");
 	const handleInputChange = useCallback(
 		(e) => {
 			setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +24,9 @@ const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
 	const handleSubmit = useCallback(
 		async (e) => {
 			e.preventDefault();
-			const id = await createOrder({ ...formData, total, paymentMethod });
+			const payload={ ...formData, total, paymentMethod, userName }
+			console.log("🚀 ~ file: OrderModal.jsx:28 ~ payload:", payload)
+			const id = await createOrder(payload);
 			toast.success("Order Placed");
 			dispatch(resetCart());
 			{
@@ -31,7 +34,7 @@ const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
 			}
 			router.push(`/order/${id}`);
 		},
-		[formData, total, paymentMethod, dispatch, router]
+		[formData, total, paymentMethod, userName, dispatch, router]
 	);
 
 	return (
