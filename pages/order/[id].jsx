@@ -35,6 +35,7 @@ const Orders = ({ order }) => {
       .inc({ status: 5 }) // Increment `price` by 88, `numSales` by 1
       .commit();
     toast.success('Canceled');
+      localStorage.removeItem('order');
     router.push('/')
   }, [order, router]);
 
