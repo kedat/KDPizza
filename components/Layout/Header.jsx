@@ -17,7 +17,6 @@ const Header = () => {
   const cartState = useSelector((state) => state.cart);
   const authState = useSelector((state) => state.auth);
   const count = cartState.pizzas.length;
-
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
@@ -73,7 +72,14 @@ const Header = () => {
             <Dropdown.Header>
               <span className='block text-sm'>{userName}</span>
             </Dropdown.Header>
-            <Dropdown.Item icon={UilUser}>Dashboard</Dropdown.Item>
+            <Dropdown.Item
+              icon={UilUser}
+              onClick={() => {
+                router.push('/profile');
+              }}
+            >
+              Dashboard
+            </Dropdown.Item>
             <Dropdown.Item icon={UilSetting}>Settings</Dropdown.Item>
             <SetTheme />
             <Dropdown.Divider />

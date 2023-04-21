@@ -24,6 +24,7 @@ const Login = ({ users }) => {
         return user;
       }
     });
+    console.log('🚀 ~ file: index.jsx:27 ~ existsUser ~ existsUser:', existsUser);
     if (existsUser.length > 0) {
       setWrongInfo(false);
       dispatch(login());
@@ -31,6 +32,7 @@ const Login = ({ users }) => {
       {
         typeof window !== 'undefined' && localStorage.setItem('isLogin', true);
         typeof window !== 'undefined' && localStorage.setItem('username', name);
+        typeof window !== 'undefined' && localStorage.setItem('userId', existsUser[0]._id);
       }
       router.push('/');
       return;
