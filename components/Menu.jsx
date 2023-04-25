@@ -21,8 +21,8 @@ const Menu = ({ pizzas, categories }) => {
 				<span className="text-red-500 text-[1rem] mb-[2rem] -mt-20">
 					OUR MENU
 				</span>
-				<span className="text-[2rem]">Menu That Always</span>
-				<span className="text-[2rem]">Make you Fall in Love</span>
+				<span className="text-[2rem] text-black dark:text-white">Menu That Always</span>
+				<span className="text-[2rem] text-black dark:text-white">Make you Fall in Love</span>
 			</div>
 			<select className="w-48" onChange={onChangeCategory}>
 				<option value={0}>Default</option>
