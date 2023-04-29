@@ -6,14 +6,14 @@ import { getAccountInfo } from '../../lib/getAccountInfo';
 import AllOrder from './Order';
 import Profile from './Profile';
 
-const ProfileContent = ({ active }) => {
+const ProfileContent = ({ active, userOrders, users }) => {
   return (
     <div className='col-span-4'>
       {/* profile */}
       {active === 1 && <Profile />}
 
       {/* order */}
-      {active === 2 && <AllOrder />}
+      {active === 2 && <AllOrder userOrders={userOrders} />}
       <Toaster />
     </div>
   );

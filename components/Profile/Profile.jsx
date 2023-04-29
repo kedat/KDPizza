@@ -16,7 +16,6 @@ const Profile = () => {
     try {
       const userId = typeof window !== 'undefined' && localStorage.getItem('userId');
       const { documents } = await getAccountInfo(userId);
-      console.log('🚀 ~ file: Profile.jsx:19 ~ getUser ~ documents:', documents);
       await setUser(documents[0]);
       setName(user && user.name);
       setEmail(user && user.email);
@@ -36,13 +35,13 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     // e.preventDefault();
-    client
-      .patch(user._id) // Document ID to patch
-      .set({ name: name, email: email, phone: Number(phoneNumber) }) // Shallow merge
-      .commit() // Perform the patch and return a promise
-      .catch((err) => {
-        console.error('Oh no, the update failed: ', err.message);
-      });
+    // client
+    //   .patch(user._id) // Document ID to patch
+    //   .set({ name: name, email: email, phone: Number(phoneNumber) })
+    //   .commit() // Perform the patch and return a promise
+    //   .catch((err) => {
+    //     console.error('Oh no, the update failed: ', err.message);
+    //   });
     toast.success('Updated');
     router.push('profile');
     setName(name);

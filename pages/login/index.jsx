@@ -24,7 +24,6 @@ const Login = ({ users }) => {
         return user;
       }
     });
-    console.log('🚀 ~ file: index.jsx:27 ~ existsUser ~ existsUser:', existsUser);
     if (existsUser.length > 0) {
       setWrongInfo(false);
       dispatch(login());

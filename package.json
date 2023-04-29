@@ -28,6 +28,7 @@
 		"@stripe/stripe-js": "^1.32.0",
 		"flowbite": "^1.6.3",
 		"flowbite-react": "^0.4.2",
+		"lodash": "^4.17.21",
 		"next": "12.2.0",
 		"next-themes": "^0.2.1",
 		"react": "18.2.0",

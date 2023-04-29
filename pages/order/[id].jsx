@@ -21,8 +21,7 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 const Orders = ({ order }) => {
-  console.log("🚀 ~ file: [id].jsx:24 ~ Orders ~ order:", order)
-  const router=useRouter()
+  const router = useRouter();
   useEffect(() => {
     if (order.status > 3) {
       localStorage.removeItem('order');
@@ -35,8 +34,8 @@ const Orders = ({ order }) => {
       .inc({ status: 5 }) // Increment `price` by 88, `numSales` by 1
       .commit();
     toast.success('Canceled');
-      localStorage.removeItem('order');
-    router.push('/')
+    localStorage.removeItem('order');
+    router.push('/');
   }, [order, router]);
 
   return (
