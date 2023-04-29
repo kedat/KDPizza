@@ -71,12 +71,9 @@ a {
 }
 
 .table-header {
-  background: #d1cccc;
-  border: 1px solid #706c6c;
   padding: 16px 32px;
 }
 
 .table-body {
-  border: 1px solid #706c6c;
   padding: 16px 32px;
 }

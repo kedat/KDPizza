@@ -64,7 +64,7 @@ const Header = () => {
         )}
         <div className='relative'>
           <Dropdown
-            label={userName ? userName.slice(0, 1) : ''}
+            label={userName ? userName.slice(0, 8) : ''}
             className='flex justify-center items-center min-w-[150px]'
           >
             {userName && (
