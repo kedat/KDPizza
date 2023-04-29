@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { removePizza } from '../store/cardSlice';
 import Layout from '../components/Layout/Layout';
+import { isEmpty, map } from 'lodash';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -48,26 +49,28 @@ const Cart = () => {
 
   return (
     <Layout>
-      <div className={`${css.container} !flex flex-col md:grid !md:grid-cols-2 `}>
+      <div className='!flex flex-col md:grid !md:grid-cols-2 gap-10'>
         {/* detail */}
-        <div className={css.detail}>
-          <table className={css.table}>
+        <div className='overflow-x-auto'>
+          <table className='w-full'>
             <thead>
-              <th>Pizza</th>
-              <th>Name</th>
-              <th className='hidden md:block text-center'>Size</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th></th>
+              <tr>
+                <th className='table-header'>Pizza</th>
+                <th className='table-header'>Name</th>
+                <th className='table-header'>Size</th>
+                <th className='table-header'>Price</th>
+                <th className='table-header'>Quantity</th>
+                <th className='table-header'>Total</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody className={css.tbody}>
-              {pizzas.length > 0 &&
-                pizzas.map((pizza, index) => {
+              {!isEmpty(pizzas) &&
+                map(pizzas, (pizza, index) => {
                   const src = urlFor(pizza.image).url();
                   return (
-                    <tr key={index}>
-                      <td>
+                    <tr key={index} className='py-4'>
+                      <td className='table-body'>
                         <Image
                           loader={() => src}
                           className='rounded-xl'
@@ -76,18 +79,17 @@ const Cart = () => {
                           objectFit='cover'
                           width={85}
                           height={85}
-                          unoptimized
                         />
                       </td>
-                      <td className='w-[15%]'>{pizza.name}</td>
-                      <td className='hidden md:block text-center h-full '>
+                      <td className='table-body'>{pizza.name}</td>
+                      <td className='table-body'>
                         {pizza.size === 0 ? 'Small' : pizza.size === 1 ? 'Medium' : 'Larger'}
                       </td>
-                      <td>{pizza.price}</td>
-                      <td>{pizza.quantity}</td>
-                      <td>{pizza.price * pizza.quantity}</td>
+                      <td className='table-body'>{pizza.price}</td>
+                      <td className='table-body'>{pizza.quantity}</td>
+                      <td className='table-body'>{pizza.price * pizza.quantity}</td>
                       <td>
-                        <button id={index} className='text-red-500' onClick={onHandleClickRemove}>
+                        <button id={index} className='text-red-500 text-3xl ml-3' onClick={onHandleClickRemove}>
                           x
                         </button>
                       </td>

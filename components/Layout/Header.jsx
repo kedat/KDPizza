@@ -39,17 +39,12 @@ const Header = () => {
   return (
     <div className={`${css.header} md:p-10 p-1 shadow-lg`}>
       {/* logo side */}
-      <div className={css.logo}>
-        <Image src={Logo} alt='Logo' width={50} height={50} />
-        <span className='hidden md:block'>Ke Dat</span>
-      </div>
-
-      {/* menu side */}
-      <ul className={css.menu}>
-        <Link href='../'>Home</Link>
-        <Link href='contact'>Contact</Link>
-        <Link href='faq'>FAQ</Link>
-      </ul>
+      <Link href='/' className='cursor-pointer'>
+        <div className={css.logo}>
+          <Image src={Logo} alt='Logo' width={50} height={50} />
+          <span className='hidden md:block'>Ke Dat</span>
+        </div>
+      </Link>
 
       {/* right side */}
       <div className={css.rightSide}>
@@ -68,19 +63,25 @@ const Header = () => {
           </Link>
         )}
         <div className='relative'>
-          <Dropdown label={userName ? userName.slice(0, 1) : ''} className='flex justify-center items-center'>
-            <Dropdown.Header>
-              <span className='block text-sm'>{userName}</span>
-            </Dropdown.Header>
-            <Dropdown.Item
-              icon={UilUser}
-              onClick={() => {
-                router.push('/profile');
-              }}
-            >
-              Dashboard
-            </Dropdown.Item>
-            <Dropdown.Item icon={UilSetting}>Settings</Dropdown.Item>
+          <Dropdown
+            label={userName ? userName.slice(0, 1) : ''}
+            className='flex justify-center items-center min-w-[150px]'
+          >
+            {userName && (
+              <Dropdown.Header>
+                <span className='block text-sm'>{userName}</span>
+              </Dropdown.Header>
+            )}
+            {userName && (
+              <Dropdown.Item
+                icon={UilUser}
+                onClick={() => {
+                  router.push('/profile');
+                }}
+              >
+                Dashboard
+              </Dropdown.Item>
+            )}
             <SetTheme />
             <Dropdown.Divider />
             {userName ? (

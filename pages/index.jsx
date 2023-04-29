@@ -11,6 +11,7 @@ import Category from '../components/Category';
 import Layout from '../components/Layout/Layout';
 import SetTheme from '../components/SetTheme';
 import Banner from '../components/Banner/Banner';
+import FAQ from '../components/FAQ';
 
 const Home = ({ pizzas, categories }) => {
   const router = useRouter();
@@ -34,6 +35,7 @@ const Home = ({ pizzas, categories }) => {
           <Services />
           <MainCarousel />
           <Menu pizzas={pizzas} categories={categories} />
+          <FAQ />
         </main>
       </div>
     </Layout>
