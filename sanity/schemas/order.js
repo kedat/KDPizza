@@ -4,6 +4,14 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'userName',
+      title: 'UserName',
+      type: 'string',
+      options: {
+        maxLength: 150,
+      },
+    },
+    {
       name: 'name',
       title: 'Name',
       type: 'string',

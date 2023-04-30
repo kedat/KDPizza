@@ -11,7 +11,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        '3xl': '1636px',
+        // => @media (min-width: 1636px) { ... }
+      }
+    },
   },
   plugins: [require('flowbite/plugin')],
 }

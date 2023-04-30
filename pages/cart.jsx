@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { removePizza } from '../store/cardSlice';
 import Layout from '../components/Layout/Layout';
+import { isEmpty, map } from 'lodash';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -48,26 +49,29 @@ const Cart = () => {
 
   return (
     <Layout>
-      <div className={`${css.container} !flex flex-col md:grid !md:grid-cols-2 `}>
+      <div className='!flex flex-col md:grid !md:grid-cols-2 gap-10 md:pt-48 pt-24 '>
         {/* detail */}
-        <div className={css.detail}>
-          <table className={css.table}>
-            <thead>
-              <th>Pizza</th>
-              <th>Name</th>
-              <th className='hidden md:block text-center'>Size</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th></th>
+
+        <div className='relative overflow-x-auto shadow-md sm:rounded-lg max-h-[500px] overflow-y-auto'>
+          <table className='w-full text-sm text-gray-500 text-center '>
+            <thead className='text-xs text-gray-700 uppercase bg-gray-50'>
+              <tr>
+                <th className='table-header'>Pizza</th>
+                <th className='table-header'>Name</th>
+                <th className='table-header'>Size</th>
+                <th className='table-header'>Price</th>
+                <th className='table-header'>Quantity</th>
+                <th className='table-header'>Total</th>
+                <th className='table-header'>Action</th>
+              </tr>
             </thead>
-            <tbody className={css.tbody}>
-              {pizzas.length > 0 &&
-                pizzas.map((pizza, index) => {
+            <tbody>
+              {!isEmpty(pizzas) &&
+                map(pizzas, (pizza, index) => {
                   const src = urlFor(pizza.image).url();
                   return (
-                    <tr key={index}>
-                      <td>
+                    <tr key={index} className=' border-b dark:bg-gray-900 dark:border-gray-700 text-center'>
+                      <td className='table-body'>
                         <Image
                           loader={() => src}
                           className='rounded-xl'
@@ -76,19 +80,18 @@ const Cart = () => {
                           objectFit='cover'
                           width={85}
                           height={85}
-                          unoptimized
                         />
                       </td>
-                      <td className='w-[15%]'>{pizza.name}</td>
-                      <td className='hidden md:block text-center h-full '>
+                      <td className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'>{pizza.name}</td>
+                      <td className='table-body'>
                         {pizza.size === 0 ? 'Small' : pizza.size === 1 ? 'Medium' : 'Larger'}
                       </td>
-                      <td>{pizza.price}</td>
-                      <td>{pizza.quantity}</td>
-                      <td>{pizza.price * pizza.quantity}</td>
+                      <td className='table-body'>{pizza.price}</td>
+                      <td className='table-body'>{pizza.quantity}</td>
+                      <td className='table-body'>{pizza.price * pizza.quantity}</td>
                       <td>
                         <button id={index} className='text-red-500' onClick={onHandleClickRemove}>
-                          x
+                          Remove
                         </button>
                       </td>
                     </tr>
@@ -97,6 +100,7 @@ const Cart = () => {
             </tbody>
           </table>
         </div>
+
         {/* summary */}
         <div className={css.cart}>
           <span>Cart</span>
@@ -112,7 +116,7 @@ const Cart = () => {
           </div>
           {!order && pizzas.length > 0 ? (
             <div className={css.buttons}>
-              <button className='btn' onClick={onHandleDelivery}>
+              <button className='btn dark:!text-gray-300' onClick={onHandleDelivery}>
                 Pay on Delivery
               </button>
               <button className='btn' onClick={onHandleCheckout}>

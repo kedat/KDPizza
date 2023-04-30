@@ -4,10 +4,11 @@ import s2 from '../assets/s2.png';
 import s3 from '../assets/s3.png';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
+
 const Services = () => {
   const { t } = useTranslation('common');
   return (
-    <div className='dark:text-white'>
+    <div className=''>
       <div className={`${css.heading} mt-10`}>
         <span>WHAT WE SERVE</span>
         <span>Your Favorite Food</span>

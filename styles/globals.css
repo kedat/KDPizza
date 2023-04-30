@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 @import 'slick-carousel/slick/slick.css';
 @import 'slick-carousel/slick/slick-theme.css';
 
 html,
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--themeBlack);
   overflow-x: hidden;
 }
@@ -68,4 +68,13 @@ a {
   font-size: 1.1rem;
   cursor: pointer;
   background-color: var(--themeRed);
+}
+
+.table-header {
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+.table-body {
+  padding: 16px 32px;
 }
