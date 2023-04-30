@@ -10,9 +10,9 @@ const Services = () => {
   return (
     <div className=''>
       <div className={`${css.heading} mt-10`}>
-        <span>WHAT WE SERVE</span>
-        <span>Your Favorite Food</span>
-        <span>Delivery Partner</span>
+        <span>{t('WHAT_WE_SERVE')}</span>
+        <span>{t('Your_Favorite_Food')}</span>
+        <span>{t('Delivery_Partner')}</span>
       </div>
       {/* features */}
       <div className='flex justify-center mt-10 flex-col lg:flex-row'>
@@ -20,7 +20,7 @@ const Services = () => {
           <div className={css.ImageWrapper}>
             <Image src={s1} alt='s1' objectFit='cover' layout='intrinsic' />
           </div>
-          <span className='font-bold'>Easy to order</span>
+          <span className='font-bold'>{t('Easy_to_order')}</span>
           <span className='text-gray-500 break-words w-[20rem] text-center'>
             You only need a few steps in food ordering
           </span>
