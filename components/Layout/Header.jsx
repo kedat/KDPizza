@@ -15,7 +15,6 @@ const Header = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cart);
-  const authState = useSelector((state) => state.auth);
   const count = cartState.pizzas.length;
   const [userName, setUserName] = useState('');
 
