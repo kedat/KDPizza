@@ -29,10 +29,7 @@ const Orders = ({ order }) => {
   }, [order]);
 
   const onCancelOrder = useCallback(async () => {
-    client
-      .patch(order._id)
-      .inc({ status: 5 }) // Increment `price` by 88, `numSales` by 1
-      .commit();
+    client.patch(order._id).inc({ status: 4 }).commit();
     toast.success('Canceled');
     localStorage.removeItem('order');
     router.push('/');
@@ -40,7 +37,7 @@ const Orders = ({ order }) => {
 
   return (
     <Layout>
-      <div className={css.container}>
+      <div className={`${css.container} md:pt-48 pt-24 `}>
         <span className={css.heading}>Order in Process</span>
         <div className={css.details}>
           <div className='flex md:flex-row flex-col'>

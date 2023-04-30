@@ -19,12 +19,12 @@ const Menu = ({ pizzas, categories }) => {
     <div className={css.container}>
       <div className={css.heading}>
         <span className='text-red-500 text-[1rem] mb-[2rem] -mt-20'>OUR MENU</span>
-        <span className='text-[2rem] text-black dark:text-white'>Menu That Always</span>
-        <span className='text-[2rem] text-black dark:text-white'>Make you Fall in Love</span>
+        <span className='text-[2rem]'>Menu That Always</span>
+        <span className='text-[2rem]'>Make you Fall in Love</span>
       </div>
 
       <select
-        className=' w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-indigo-500'
+        className='text-black w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-indigo-500'
         onChange={onChangeCategory}
       >
         <option value={0}>All</option>

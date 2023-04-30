@@ -64,7 +64,7 @@ const SignUp = ({ users }) => {
   );
 
   return (
-    <section className=' md:mx-14 mx-3 bg-white '>
+    <section className=' md:px-14 px-3 bg-white dark:bg-gray-900'>
       <Image src={back} alt='' height={mobile ? 800 : 500} />
       <form
         className='border border-1 flex flex-col md:my-10 my-2 bg-white md:px-10 px-4 md:w-[760px] mx-auto text-left md:py-10 rounded-2xl py-10'

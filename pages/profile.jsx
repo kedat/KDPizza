@@ -21,7 +21,7 @@ const ProfilePage = ({ orders, users }) => {
 
   return (
     <Layout>
-      <div className=' mx-auto bg-[#f5f5f5] py-10 grid grid-cols-5'>
+      <div className=' mx-auto bg-[#f5f5f5] py-10 grid grid-cols-5 md:mt-48 mt-24 md:dark:mt-0 md:dark:pt-48 dark:pt-24 dark:mt-20 dark:bg-gray-900 '>
         <ProfileSideBar active={active} setActive={setActive} />
         <ProfileContent active={active} userOrders={userOrders} users={users} />
       </div>

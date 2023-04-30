@@ -47,7 +47,7 @@ const SETTINGS = {
 const Banner = () => {
   return (
     <div>
-      <Slider {...SETTINGS} className='md:-mt-10'>
+      <Slider {...SETTINGS} className='md:mt-48 mt-24'>
         {homepage.length > 0 &&
           homepage.map((items) => <CardCell {...items} key={`slider-review-${items.customer}`} />)}
       </Slider>

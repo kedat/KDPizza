@@ -37,27 +37,29 @@ const Header = () => {
     router.push('/login');
   }, [dispatch, router]);
   return (
-    <div className={`${css.header} md:p-10 p-1 shadow-lg`}>
+    <div className={`${css.header} md:p-10 p-1 shadow-lg dark:bg-gray-900 dark:text-gray-300`}>
       {/* logo side */}
-      <Link href='/' className='cursor-pointer'>
-        <div className={css.logo}>
-          <Image src={Logo} alt='Logo' width={50} height={50} />
-          <span className='hidden md:block'>Ke Dat</span>
-        </div>
-      </Link>
+      <span>
+        <Link href='/'>
+          <div className={css.logo}>
+            <Image src={Logo} alt='Logo' width={50} height={50} />
+            <span className='hidden md:block dark:text-gray-300'>Ke Dat</span>
+          </div>
+        </Link>
+      </span>
 
       {/* right side */}
       <div className={css.rightSide}>
         <Link href='/cart' className='cursor-pointer'>
           <div className={css.cart}>
-            <UilShoppingBag size={35} color='2E2E2E' />
+            <UilShoppingBag size={35} className='dark:text-gray-300 text-[#2E2E2E]' />
             <div className={css.badge}>{count}</div>
           </div>
         </Link>
         {order && (
           <Link href={`/order/${order}`} className='cursor-pointer'>
             <div className={css.cart}>
-              <UilReceipt size={35} color='2E2E2E' />
+              <UilReceipt size={35} className='dark:text-gray-300 text-[#2E2E2E]' />
               {order != '' && <div className={css.badge}>1</div>}
             </div>
           </Link>

@@ -82,17 +82,14 @@ const SETTINGS = {
 
 const MainCarousel = () => {
   return (
-    <>
-      <div className='mt-7'>
-        <Slider {...SETTINGS}>
-          {homepage.length > 0 &&
-            homepage.map((items) =>
-              items.map((review) => <CardCell {...review} key={`slider-review-${review.customer}`} />),
-            )}
-        </Slider>
-      </div>
-    </>
-    // </Carousel>
+    <div className='mt-7'>
+      <Slider {...SETTINGS}>
+        {homepage.length > 0 &&
+          homepage.map((items) =>
+            items.map((review) => <CardCell {...review} key={`slider-review-${review.customer}`} />),
+          )}
+      </Slider>
+    </div>
   );
 };
 

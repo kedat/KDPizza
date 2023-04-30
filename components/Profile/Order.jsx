@@ -5,18 +5,17 @@ import { client } from '../../lib/client';
 const AllOrder = ({ userOrders }) => {
   return (
     <div className='col-span-4'>
-      <div className='w-full px-5'>Order</div>
       <div className='overflow-x-auto'>
-        <table className='table w-full'>
+        <table className='table w-full text-center'>
           <thead>
             <tr>
-              <th className='bg-gray-300 border text-left px-8 py-4'>Name</th>
-              <th className='bg-gray-300 border text-left px-8 py-4'>Phone</th>
-              <th className='bg-gray-300 border text-left px-8 py-4'>Total</th>
-              <th className='bg-gray-300 border text-left px-8 py-4'>Status</th>
-              <th className='bg-gray-300 border text-left px-8 py-4'>Method</th>
-              <th className='bg-gray-300 border text-left px-8 py-4'>Created at</th>
-              <th className='bg-gray-300 border text-left px-8 py-4'>Updated at</th>
+              <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Name</th>
+              <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Phone</th>
+              <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Total</th>
+              <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Status</th>
+              <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Method</th>
+              <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Created at</th>
+              <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Updated at</th>
             </tr>
           </thead>
           <tbody>
