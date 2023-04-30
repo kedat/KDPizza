@@ -5,6 +5,7 @@ import { toast, Toaster } from 'react-hot-toast';
 import { getAccountInfo } from '../../lib/getAccountInfo';
 import AllOrder from './Order';
 import Profile from './Profile';
+import ChangePassword from './ChangePassword';
 
 const ProfileContent = ({ active, userOrders, users }) => {
   return (
@@ -14,6 +15,9 @@ const ProfileContent = ({ active, userOrders, users }) => {
 
       {/* order */}
       {active === 2 && <AllOrder userOrders={userOrders} />}
+
+      {/* order */}
+      {active === 3 && <ChangePassword />}
       <Toaster />
     </div>
   );

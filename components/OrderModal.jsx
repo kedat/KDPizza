@@ -47,7 +47,7 @@ const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
       {/* Modal content */}
       <form onSubmit={handleSubmit} className={css.formContainer}>
         <input type='text' name='name' required placeholder='Name' onChange={handleInputChange} />
-        <input type='text' name='phone' required placeholder='Phone number' onChange={handleInputChange} />
+        <input type='number' name='phone' required placeholder='Phone number' onChange={handleInputChange} />
         <textarea name='address' rows={3} placeholder='Address' onChange={handleInputChange}></textarea>
         <span>
           You will pay <span className='font-bold text-red-500 text-[1.3rem]'>${total}</span> on delivery

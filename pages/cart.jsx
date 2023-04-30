@@ -52,8 +52,8 @@ const Cart = () => {
       <div className='!flex flex-col md:grid !md:grid-cols-2 gap-10 md:pt-48 pt-24 '>
         {/* detail */}
 
-        <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
-          <table className='w-full text-sm text-gray-500 text-center'>
+        <div className='relative overflow-x-auto shadow-md sm:rounded-lg max-h-[500px] overflow-y-auto'>
+          <table className='w-full text-sm text-gray-500 text-center '>
             <thead className='text-xs text-gray-700 uppercase bg-gray-50'>
               <tr>
                 <th className='table-header'>Pizza</th>
@@ -116,7 +116,7 @@ const Cart = () => {
           </div>
           {!order && pizzas.length > 0 ? (
             <div className={css.buttons}>
-              <button className='btn' onClick={onHandleDelivery}>
+              <button className='btn dark:!text-gray-300' onClick={onHandleDelivery}>
                 Pay on Delivery
               </button>
               <button className='btn' onClick={onHandleCheckout}>

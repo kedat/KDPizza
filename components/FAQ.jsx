@@ -13,9 +13,9 @@ const FAQ = () => {
   };
 
   return (
-    <div className='mx-auto my-8'>
+    <div className=' my-8'>
       <h2 className='text-3xl font-bold mb-8'>FAQ</h2>
-      <div className='mx-auto space-y-4'>
+      <div className=' space-y-4'>
         {/* single Faq */}
 
         <div className='border-b border-gray-200 pb-4'>
@@ -68,7 +68,7 @@ const FAQ = () => {
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(4)}>
-            <span className='text-lg font-medium'>How do I contact customer support?</span>
+            <span className='text-lg font-medium text-left'>How do I contact customer support?</span>
             {activeTab === 4 ? (
               <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
@@ -91,7 +91,7 @@ const FAQ = () => {
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(5)}>
-            <span className='text-lg font-medium'>Can I change or cancel my order?</span>
+            <span className='text-lg font-medium text-left'>Can I change or cancel my order?</span>
             {activeTab === 5 ? (
               <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
@@ -114,7 +114,7 @@ const FAQ = () => {
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(6)}>
-            <span className='text-lg font-medium'>Do you offer international shipping?</span>
+            <span className='text-lg font-medium text-left'>Do you offer international shipping?</span>
             {activeTab === 6 ? (
               <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
@@ -134,7 +134,7 @@ const FAQ = () => {
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(7)}>
-            <span className='text-lg font-medium'>What payment methods do you accept?</span>
+            <span className='text-lg font-medium text-left'>What payment methods do you accept?</span>
             {activeTab === 7 ? (
               <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />

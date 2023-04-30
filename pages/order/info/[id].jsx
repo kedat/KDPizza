@@ -1,14 +1,13 @@
-import css from '../../styles/Order.module.css';
-import { client } from '../../lib/client';
+import css from '../../../styles/Order.module.css';
+import { client } from '../../../lib/client';
 import { UilBill, UilBox, UilCancel } from '@iconscout/react-unicons';
 import Image from 'next/image';
-import Cooking from '../../assets/cooking.png';
-import onWay from '../../assets/onway.png';
-import Spinner from '../../assets/spinner.svg';
+import Cooking from '../../../assets/cooking.png';
+import onWay from '../../../assets/onway.png';
+import Spinner from '../../../assets/spinner.svg';
 import { useCallback, useEffect } from 'react';
-import Layout from '../../components/Layout/Layout';
-import { cancelOrder } from '../../lib/orderHandle';
-import { toast, Toaster } from 'react-hot-toast';
+import Layout from '../../../components/Layout/Layout';
+import { cancelOrder } from '../../../lib/orderHandle';
 import { useRouter } from 'next/router';
 
 export const getServerSideProps = async ({ params }) => {
@@ -21,24 +20,10 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 const Orders = ({ order }) => {
-  const router = useRouter();
-  useEffect(() => {
-    if (order.status > 3) {
-      localStorage.removeItem('order');
-    }
-  }, [order]);
-
-  const onCancelOrder = useCallback(async () => {
-    client.patch(order._id).inc({ status: 4 }).commit();
-    toast.success('Canceled');
-    localStorage.removeItem('order');
-    router.push('/');
-  }, [order, router]);
-
   return (
     <Layout>
       <div className={`${css.container} md:pt-48 pt-24 `}>
-        <span className={css.heading}>Order in Process</span>
+        <span className={css.heading}>Order Information</span>
         <div className={css.details}>
           <div className='flex md:flex-row flex-col'>
             <span>Order ID</span>
@@ -127,18 +112,7 @@ const Orders = ({ order }) => {
             )}
           </div>
         </div>
-        <div
-          className={`flex justify-end bg-red-500 text-white px-4 py-2 rounded-md ${
-            order.status > 2 && 'pointer-events-none opacity-50'
-          }`}
-        >
-          <button className='flex items-center gap-1' onClick={onCancelOrder}>
-            <UilCancel width={20} height={20} />
-            Cancel this order
-          </button>
-        </div>
       </div>
-      <Toaster />
     </Layout>
   );
 };

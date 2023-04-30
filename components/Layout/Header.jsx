@@ -42,7 +42,7 @@ const Header = () => {
       <span>
         <Link href='/'>
           <div className={css.logo}>
-            <Image src={Logo} alt='Logo' width={50} height={50} />
+            <Image src={Logo} alt='Logo' width={50} height={50} className='rounded-md' />
             <span className='hidden md:block dark:text-gray-300'>Ke Dat</span>
           </div>
         </Link>
