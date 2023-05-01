@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { client } from '../../lib/client';
 import { toast, Toaster } from 'react-hot-toast';
-import AllOrder from './Orders';
+import AllOrder from './Order/Orders';
 import AllUser from './Users';
 import AllCategory from './Category/Categories';
 import AllPizza from './Pizzas';

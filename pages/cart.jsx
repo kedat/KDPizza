@@ -15,7 +15,6 @@ const Cart = () => {
   const router = useRouter();
   const pizzas = useSelector((state) => state.cart.pizzas);
   const [paymentMethod, setPaymentMethod] = useState(1);
-  const [order, setOrder] = useState(typeof window !== 'undefined' && localStorage.getItem('order'));
   const isLogin = typeof window !== 'undefined' && localStorage.getItem('username');
   const onHandleClickRemove = useCallback(
     (e) => {
@@ -115,7 +114,7 @@ const Cart = () => {
               <span>$ {total()}</span>
             </div>
           </div>
-          {!order && isLogin && pizzas.length > 0 ? (
+          {isLogin && pizzas.length > 0 ? (
             <div className={css.buttons}>
               <button className='btn dark:!text-gray-300' onClick={onHandleDelivery}>
                 Pay on Delivery

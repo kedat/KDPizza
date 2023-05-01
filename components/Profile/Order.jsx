@@ -25,7 +25,7 @@ const AllOrder = ({ userOrders }) => {
               map(userOrders, (order) => (
                 <tr key={order._id}>
                   <td className='border px-8 py-4'>
-                    <Link href={`./order/info/${order._id}`}>{order.name}</Link>
+                    <Link href={`./order/${order._id}`}>{order.name}</Link>
                   </td>
                   <td className='border px-8 py-4'>{order.phone}</td>
                   <td className='border px-8 py-4'>{order.total}</td>

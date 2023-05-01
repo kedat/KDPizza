@@ -11,7 +11,6 @@ const AllCategory = ({ categories }) => {
   const [id, setId] = useState('');
   const router = useRouter();
   const onDeleteCategory = useCallback(async () => {
-    console.log('🚀 ~ file: Categories.jsx:25 ~ onDeleteCategory ~ id:', id);
     await client
       .delete(id)
       .then(() => {
@@ -40,9 +39,7 @@ const AllCategory = ({ categories }) => {
               map(categories, (category) => (
                 <tr key={category._id}>
                   <td className='border px-8 py-4'>{category.id}</td>
-                  <td className='border px-8 py-4'>
-                    <Link href={`./category/info/${category._id}`}>{category.name}</Link>
-                  </td>
+                  <td className='border px-8 py-4'>{category.name}</td>
                   {showConfirmModal && (
                     <div className='absolute z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-slate-900 bg-opacity-20'>
                       <div className='absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-md max-h-full'>

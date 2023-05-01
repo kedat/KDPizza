@@ -5,27 +5,25 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useCallback } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
-import { client } from '../../lib/client';
+import { client } from '../../../lib/client';
 
 const AllOrder = ({ orders }) => {
   const router = useRouter();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [id, setId] = useState('');
 
-  const onDeleteOrder = useCallback(
-    async (id) => {
-      await client
-        .delete(id)
-        .then(() => {
-          setShowConfirmModal(false);
-          toast.success('Delete successfully');
-          router.push('/admin');
-        })
-        .catch((err) => {
-          console.error('Delete failed: ', err.message);
-        });
-    },
-    [router],
-  );
+  const onDeleteOrder = useCallback(async () => {
+    await client
+      .delete(id)
+      .then(() => {
+        setShowConfirmModal(false);
+        toast.success('Delete successfully');
+        router.push('/admin');
+      })
+      .catch((err) => {
+        console.error('Delete failed: ', err.message);
+      });
+  }, [id, router]);
 
   return (
     <div className='col-span-4'>
@@ -48,7 +46,7 @@ const AllOrder = ({ orders }) => {
               map(orders, (order) => (
                 <tr key={order._id}>
                   <td className='border px-8 py-4'>
-                    <Link href={`./order/info/${order._id}`}>{order._id}</Link>
+                    <Link href={`./order/${order._id}`}>{order._id}</Link>
                   </td>
                   <td className='border px-8 py-4'>{order.name}</td>
                   <td className='border px-8 py-4'>{order.phone}</td>
@@ -68,6 +66,7 @@ const AllOrder = ({ orders }) => {
                       className='ml-3 hover:text-red-500'
                       onClick={() => {
                         setShowConfirmModal(true);
+                        setId(order._id);
                       }}
                     >
                       Delete
@@ -118,9 +117,7 @@ const AllOrder = ({ orders }) => {
                               data-modal-hide='popup-modal'
                               type='button'
                               className='text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2'
-                              onClick={() => {
-                                onDeleteOrder(order._id);
-                              }}
+                              onClick={onDeleteOrder}
                             >
                               Yes, Im sure
                             </button>
