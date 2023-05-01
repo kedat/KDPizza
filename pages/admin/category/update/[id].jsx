@@ -12,7 +12,7 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 
-const AddCategory = ({ category }) => {
+const UpdateCategory = ({ category }) => {
   return (
     <Layout>
       <UpdateCategoryComponent category={category} />
@@ -20,4 +20,4 @@ const AddCategory = ({ category }) => {
   );
 };
 
-export default AddCategory;
+export default UpdateCategory;

@@ -59,7 +59,7 @@ const AllOrder = ({ orders }) => {
                   <td className='border px-8 py-4'>{order.method === 0 ? 'Pay on Delivery' : 'Online Payment'}</td>
                   <td className='border px-8 py-4'>{order._updatedAt}</td>
                   <td className='border px-8 py-4'>
-                    <Link href={`order/update/${order._id}`} className='hover:text-red-500'>
+                    <Link href={`admin/order/update/${order._id}`} className='hover:text-red-500'>
                       Update
                     </Link>
                     <button
