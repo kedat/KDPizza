@@ -30,7 +30,7 @@ const AllCategory = ({ categories }) => {
         <table className='table w-full text-center'>
           <thead>
             <tr>
-              <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>ID</th>
+              <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Category ID</th>
               <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Name</th>
               <th className='text-gray-700 uppercase bg-gray-50 border px-8 py-4'>Action</th>
             </tr>
@@ -39,9 +39,7 @@ const AllCategory = ({ categories }) => {
             {!isEmpty(categories) &&
               map(categories, (category) => (
                 <tr key={category._id}>
-                  <td className='border px-8 py-4'>{category._id}</td>
                   <td className='border px-8 py-4'>{category.id}</td>
-
                   <td className='border px-8 py-4'>
                     <Link href={`./category/info/${category._id}`}>{category.name}</Link>
                   </td>
@@ -88,14 +86,13 @@ const AllCategory = ({ categories }) => {
                     </div>
                   )}
                   <td className='border px-8 py-4'>
-                    <Link href={`category/update/${category._id}`} className='hover:text-red-500'>
+                    <Link href={`admin/category/update/${category._id}`} className='hover:text-red-500'>
                       Update
                     </Link>
                     <button
                       className='ml-3 hover:text-red-500'
                       onClick={() => {
                         setShowConfirmModal(true);
-                        console.log('🚀 ~ file: Categories.jsx:111 ~ AllCategory ~ category._id:', category._id);
                         setId(category._id);
                       }}
                     >
