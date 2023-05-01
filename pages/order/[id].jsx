@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Cooking from '../../assets/cooking.png';
 import onWay from '../../assets/onway.png';
 import Spinner from '../../assets/spinner.svg';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Layout from '../../components/Layout/Layout';
 import { cancelOrder } from '../../lib/orderHandle';
 import { toast, Toaster } from 'react-hot-toast';
@@ -21,6 +21,7 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 const Orders = ({ order }) => {
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const router = useRouter();
   useEffect(() => {
     if (order.status > 3) {
@@ -132,12 +133,18 @@ const Orders = ({ order }) => {
             order.status > 2 && 'pointer-events-none opacity-50'
           }`}
         >
-          <button className='flex items-center gap-1' onClick={onCancelOrder}>
+          <button
+            className='flex items-center gap-1'
+            onClick={() => {
+              setShowConfirmModal(true);
+            }}
+          >
             <UilCancel width={20} height={20} />
             Cancel this order
           </button>
         </div>
       </div>
+
       <Toaster />
     </Layout>
   );

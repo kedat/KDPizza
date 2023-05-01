@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import React, { FC } from 'react';
 import { useWindowSize } from '../../lib/hooks';
 
 const CardCell = ({ customer, avatar, comment }) => {
