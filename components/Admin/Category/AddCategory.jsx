@@ -11,7 +11,7 @@ import { useCallback } from 'react';
 import Loading from '../../common/Loading';
 import { useState } from 'react';
 
-const AddCategoryComponent = ({ categories }) => {
+const AddCategoryComponent = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
