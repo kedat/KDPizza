@@ -11,16 +11,15 @@ import { useCallback } from 'react';
 import Loading from '../../common/Loading';
 import { useState } from 'react';
 
-const UpdateOrderComponent = ({ order }) => {
-  const { name, phone, status, address, userName, total, _id } = order;
+const UpdatePizzaComponent = ({ pizza, categories }) => {
+  const { name, categoryId, details, _id } = pizza;
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const schema = yup.object().shape({
     name: yup.string().required(),
-    status: yup.number().required(),
-    phone: yup.number().required(),
-    address: yup.string().required(),
+    detail: yup.string().required(),
+    category: yup.string().required(),
   });
 
   const {
@@ -33,17 +32,17 @@ const UpdateOrderComponent = ({ order }) => {
 
   const onSubmit = useCallback(
     async (data) => {
-      const { name, status, phone, address } = data;
+      const { name, category, detail } = data;
       setLoading(true);
       await client
         .patch(_id) // Document ID to patch
-        .set({ name, status, phone: String(phone), address })
+        .set({ name, categoryId: Number(category), details: detail })
         .commit()
-        .then((updatedOrder) => {
+        .then((updatedPizza) => {
           router.push('/admin');
-          toast.success('Update order successfully');
+          toast.success('Update pizza successfully');
           setLoading(false);
-          console.log(updatedOrder);
+          console.log(updatedPizza);
         })
         .catch((err) => {
           console.error('Oh no, the update failed: ', err.message);
@@ -77,105 +76,46 @@ const UpdateOrderComponent = ({ order }) => {
         <div className='relative z-0 w-full mb-6 group'>
           <input
             type='text'
-            name='floating_userName'
-            id='floating_userName'
+            name='floating_detail'
+            id='floating_detail'
             className='block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-            value={userName}
-            disabled
+            {...register('detail')}
+            defaultValue={details}
           />
-          <p>{errors.userName?.message}</p>
+          <p>{errors.details?.message}</p>
           <label
-            htmlFor='floating_userName'
+            htmlFor='floating_detail'
             className='peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
           >
-            User Name
+            Detail
           </label>
         </div>
       </div>
       <div className='grid md:grid-cols-2 md:gap-6'>
-        <div className='relative z-0 w-full mb-6 group'>
-          <input
-            type='number'
-            name='floating_total'
-            id='floating_total'
-            className='block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-            disabled
-            defaultValue={total}
-          />
-          <label
-            htmlFor='floating_total'
-            className='peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
-          >
-            Order total
-          </label>
-        </div>
         <div className='relative z-0 w-full mb-6 group'>
           <label
             htmlFor='underline_select'
             className='peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
           >
-            Underline select
+            Category
           </label>
           <select
             id='underline_select'
             className='block py-2.5 px-0 w-full text-md text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-white dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer'
-            {...register('status')}
-            defaultValue={status}
+            {...register('category')}
+            defaultValue={categoryId}
           >
-            <option value='1' className='dark:text-black'>
-              Cooking
-            </option>
-            <option value='2' className='dark:text-black'>
-              On way
-            </option>
-            <option value='3' className='dark:text-black'>
-              Delivered
-            </option>
-            <option value='4' className='dark:text-black'>
-              Completed
-            </option>
+            {categories.map((category, id) => {
+              return (
+                <option value={category.id} key={category.id} className='py-1 dark:text-black'>
+                  {category.name}
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>
-      <div className='grid md:grid-cols-2 md:gap-6'>
-        <div className='relative z-0 w-full mb-6 group'>
-          <input
-            type='number'
-            name='floating_phone'
-            id='floating_phone'
-            className='block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-            defaultValue={phone}
-            required
-            {...register('phone')}
-          />
-          <p>{errors.phone?.message}</p>
-          <label
-            htmlFor='floating_phone'
-            className='peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
-          >
-            Phone
-          </label>
-        </div>
-        <div className='relative z-0 w-full mb-6 group'>
-          <input
-            type='text'
-            name='floating_address'
-            id='floating_address'
-            className='block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-            placeholder=' '
-            defaultValue={address}
-            {...register('address')}
-            required
-          />
-          <p>{errors.address?.message}</p>
-          <label
-            htmlFor='floating_address'
-            className='peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
-          >
-            Address
-          </label>
-        </div>
-      </div>
+
       <button
         type='submit'
         className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
@@ -187,4 +127,4 @@ const UpdateOrderComponent = ({ order }) => {
   );
 };
 
-export default UpdateOrderComponent;
+export default UpdatePizzaComponent;

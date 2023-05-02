@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { client } from '../../lib/client';
 import { toast, Toaster } from 'react-hot-toast';
 import AllOrder from './Order/Orders';
-import AllUser from './Users';
+import AllUser from './User/Users';
 import AllCategory from './Category/Categories';
-import AllPizza from './Pizzas';
+import AllPizza from './Pizza/Pizzas';
 
 const AdminContent = ({ active, orders, users, pizzas, categories }) => {
   return (
@@ -16,7 +16,7 @@ const AdminContent = ({ active, orders, users, pizzas, categories }) => {
 
       {active === 3 && <AllCategory categories={categories} />}
 
-      {active === 4 && <AllPizza pizzas={pizzas} />}
+      {active === 4 && <AllPizza pizzas={pizzas} categories={categories} />}
       <Toaster />
     </div>
   );

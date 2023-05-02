@@ -84,10 +84,10 @@ const AllCategory = ({ categories }) => {
                   )}
                   <td className='border px-8 py-4'>
                     <Link href={`admin/category/update/${category._id}`} className='hover:text-red-500'>
-                      Update
+                      <span className=' hover:text-red-500 cursor-pointer'>Update </span>
                     </Link>
                     <button
-                      className='ml-3 hover:text-red-500'
+                      className='hover:text-red-500'
                       onClick={() => {
                         setShowConfirmModal(true);
                         setId(category._id);
