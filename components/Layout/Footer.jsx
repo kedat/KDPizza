@@ -3,7 +3,6 @@ import css from '../../styles/Footer.module.css';
 import Logo from '../../assets/Logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import { footerCompanyLinks, footerProductLinks, footerSupportLinks } from '../../static/data';
 const Footer = () => {
   return (
     <footer className='bg-white dark:bg-gray-900 md:px-10 px-1 dark:text-gray-300'>

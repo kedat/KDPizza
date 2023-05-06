@@ -5,14 +5,20 @@ import ProfileContent from '../components/Profile/ProfileContent';
 import Layout from '../components/Layout/Layout';
 import { getAccountInfo } from '../lib/getAccountInfo';
 import { client } from '../lib/client';
+import { useRouter } from 'next/router';
 
 const ProfilePage = ({ orders, users }) => {
+  const router = useRouter();
   const [userName, setUserName] = useState('');
   const [active, setActive] = useState(1);
 
   useEffect(() => {
+    if (!localStorage.getItem('username')) {
+      router.push('/');
+    }
     setUserName(typeof window !== 'undefined' && localStorage.getItem('username'));
-  }, []);
+  }, [router]);
+
   const userOrders = orders.filter((order) => {
     if (order.userName === userName) {
       return order;

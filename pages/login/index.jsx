@@ -19,6 +19,10 @@ const Login = ({ users }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (name === 'admin' && pass === 'datadmin') {
+      typeof window !== 'undefined' && localStorage.setItem('isAdminLogin', true);
+      router.push('/admin');
+    }
     const existsUser = users.filter((user, id) => {
       if (user.name == name && user.password == pass) {
         return user;

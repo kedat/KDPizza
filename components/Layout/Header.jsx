@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import css from '../../styles/Header.module.css';
 import Logo from '../../assets/Logo.png';
-import { UilShoppingBag, UilReceipt, UilUser, UilSetting, UilSignout } from '@iconscout/react-unicons';
+import { UilShoppingBag, UilUser, UilSetting, UilSignout } from '@iconscout/react-unicons';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +15,6 @@ const Header = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cart);
-  const authState = useSelector((state) => state.auth);
   const count = cartState.pizzas.length;
   const [userName, setUserName] = useState('');
 
@@ -23,12 +22,9 @@ const Header = () => {
     setUserName(typeof window !== 'undefined' && localStorage.getItem('username'));
   }, []);
   // state
-  const [order, setOrder] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-  useEffect(() => {
-    setOrder(localStorage.getItem('order'));
-  }, []);
+
   const onClickChangeLang = (l) => {
     router.push('/', undefined, { locale: l });
   };
@@ -70,14 +66,7 @@ const Header = () => {
             <div className={css.badge}>{count}</div>
           </div>
         </Link>
-        {order && (
-          <Link href={`/order/${order}`} className='cursor-pointer'>
-            <div className={css.cart}>
-              <UilReceipt size={35} className='dark:text-gray-300 text-[#2E2E2E]' />
-              {order != '' && <div className={css.badge}>1</div>}
-            </div>
-          </Link>
-        )}
+
         <div className='relative'>
           <Dropdown
             label={userName ? userName.slice(0, 8) : ''}

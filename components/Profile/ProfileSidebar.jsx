@@ -1,14 +1,5 @@
-import React from 'react';
-import {
-  UilShoppingBag,
-  UilReceipt,
-  UilUser,
-  UilSetting,
-  UilSignout,
-  UilShoppingCart,
-  UilKeySkeleton,
-  UilSignOutAlt,
-} from '@iconscout/react-unicons';
+import { UilUser, UilKeySkeleton, UilTransaction, UilShoppingCart } from '@iconscout/react-unicons';
+
 const ProfileSidebar = ({ setActive, active }) => {
   return (
     <div className='pl-3'>
