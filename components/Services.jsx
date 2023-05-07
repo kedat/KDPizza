@@ -22,7 +22,7 @@ const Services = () => {
           </div>
           <span className='font-bold'>{t('Easy_to_order')}</span>
           <span className='text-gray-500 break-words w-[20rem] text-center'>
-            You only need a few steps in food ordering
+            {t('You_only_need_a_few_steps_in_food_ordering')}
           </span>
         </div>
 
@@ -30,9 +30,9 @@ const Services = () => {
           <div className={css.ImageWrapper}>
             <Image src={s2} alt='s2' objectFit='cover' layout='intrinsic' />
           </div>
-          <span className='font-bold'>Easy to order</span>
+          <span className='font-bold'>{t('Easy_to_order')}</span>
           <span className='text-gray-500 break-words w-[20rem] text-center'>
-            Delivery that is always on time even faster
+            {t('Delivery_that_is_always_on_time_even_faster')}
           </span>
         </div>
 
@@ -40,7 +40,7 @@ const Services = () => {
           <div className={css.ImageWrapper}>
             <Image src={s3} alt='s3' objectFit='cover' layout='intrinsic' />
           </div>
-          <span className='font-bold'>Easy to order</span>
+          <span className='font-bold'>{t('Easy_to_order')}</span>
           <span className='text-gray-500 break-words w-[20rem] text-center'>{t('tet')}</span>
         </div>
       </div>

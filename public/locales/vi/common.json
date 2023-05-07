@@ -1,6 +1,58 @@
 {
+  "Fast_food": "Đồ ăn nhanh",
+  "Pizza": "Pizza",
+  "Asian_food": "Ẩm thực châu Á",
+  "Row_meat": "Thịt sạch",
+
+
   "tet": "456789",
   "WHAT_WE_SERVE": "Sẽ có những gì",
   "Your_Favorite_Food": "Đồ ăn yêu thích của bạn",
-  "Delivery_Partner": "Đối tác tin cậy"
+  "Delivery_Partner": "Đối tác tin cậy",
+  "Easy_to_order": "Dễ dàng đặt hàng",
+  "You_only_need_a_few_steps_in_food_ordering": "Bạn chỉ cần một vài bước trong việc đặt món",
+  "Delivery_that_is_always_on_time_even_faster": "Giao hàng luôn đúng hạn, thậm chí còn nhanh hơn",
+  "Our_menu": "Menu của chúng tôi",
+  "Menu_That_Always": "THỰC ĐƠN SẼ LUÔN KHIẾN BẠN",
+  "Make_you_Fall_in_Love": "ĐẮM CHÌM TRONG TÌNH YÊU",
+  "All": "Tất cả",
+  "FAQ": "HỎI VÀ ĐÁP",
+  "What_is_your_return_policy": "Chính sách hoàn trả của bạn là gì?",
+  "How_do_I_track_my_order": "Làm cách nào để theo dõi đơn hàng của tôi?",
+  "How_do_I_contact_customer_support": "Làm cách nào để liên hệ với bộ phận hỗ trợ khách hàng?",
+  "Can_I_change_or_cancel_my_order":"Tôi có thể thay đổi hoặc hủy đơn đặt hàng của mình không?",
+  "Do_you_offer_international_shipping": "Bạn thường có thường xuyên đặt hàng nước ngoài không?",
+  "What_payment_methods_do_you_accept": "Phương thức thanh toán nào được chấp nhận?",
+
+  "What_is_your_return_policy_reply": "Nếu bạn không hài lòng với giao dịch mua hàng của mình, chúng tôi chấp nhận trả lại trong vòng 30 ngày kể từ ngày giao hàng. Để bắt đầu trả lại, vui lòng gửi email cho chúng tôi theo địa chỉ support@myecommercestore.com với số đơn đặt hàng của bạn và giải thích ngắn gọn về lý do bạn trả lại mặt hàng.",
+  "How_do_I_track_my_order_reply": "Bạn có thể theo dõi đơn đặt hàng của mình bằng cách nhấp vào liên kết theo dõi trong email xác nhận giao hàng hoặc bằng cách đăng nhập vào tài khoản của bạn trên trang web của chúng tôi và xem chi tiết đơn đặt hàng.",
+  "How_do_I_contact_customer_support_reply": "Bạn có thể liên hệ với nhóm hỗ trợ khách hàng của chúng tôi bằng cách gửi email cho chúng tôi theo địa chỉ support@myecommercestore.com hoặc gọi cho chúng tôi theo số (555) 123-4567 trong khoảng thời gian từ 9 giờ sáng đến 5 giờ chiều EST, từ Thứ Hai đến Thứ Sáu.",
+  "Can_I_change_or_cancel_my_order_reply":"Thật không may, một khi đơn đặt hàng đã được đặt, chúng tôi không thể thực hiện thay đổi hoặc hủy bỏ. Nếu bạn không muốn các mặt hàng bạn đã đặt hàng nữa, bạn có thể trả lại chúng để được hoàn lại tiền trong vòng 30 ngày kể từ ngày giao hàng.",
+  "Do_you_offer_international_shipping_reply": "Hiện tại, chúng tôi chỉ cung cấp dịch vụ vận chuyển trong phạm vi Hoa Kỳ.",
+  "What_payment_methods_do_you_accept_reply": "Chúng tôi chấp nhận phương thức thanh toán visa, mastercard, paypal, chúng tôi cũng có tiền mặt trên hệ thống giao hàng.",
+
+  "Company": "CÔNG TY",
+  "About": "Thông tin",
+  "Careers": "Nghề nghiệp",
+  "Brand_center": "Trung tâm thương hiệu",
+  "Blog": "Blog",
+  
+  "Help_center": "TRUNG TÂM TRỢ GIÚP",
+  "Discord_server": "Server Discord",
+  "Twitter": "Twitter",
+  "Facebook": "Facebook",
+  "Contact_us": "Kết nối với chúng tôi",
+  
+  "Legal": "HỢP PHÁP",
+  "Privacy_Policy": "Chính sách bảo mật",
+  "Licensing": "Cấp phép",
+  "Terms_and_conditions": "Điều khoản và điều kiện",
+
+  "Download": "TẢI XUỐNG",
+  "IOS": "Tải xuống cho IOS",
+  "Android": "Tải xuống cho Android",
+  "Windows": "Tải xuống cho Windows",
+  "MacOS": "Tải xuống cho MacOS"
+
+
 }

@@ -3,57 +3,61 @@ import css from '../../styles/Footer.module.css';
 import Logo from '../../assets/Logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
+
+
 const Footer = () => {
+  const { t } = useTranslation('common');
   return (
     <footer className='bg-white dark:bg-gray-900 md:px-10 px-1 dark:text-gray-300'>
       <div className='mx-auto w-full '>
         <div className='grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4'>
           <div>
-            <h2 className='mb-6 text-sm font-semibold uppercase '>Company</h2>
+            <h2 className='mb-6 text-sm font-semibold uppercase '>{t('Company')}</h2>
             <ul className='font-medium'>
               <li className='mb-4'>
                 <a href='#' className=' hover:underline'>
-                  About
+                  {t('About')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Careers
+                  {t('Careers')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Brand Center
+                  {t('Brand_center')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Blog
+                  {t('Blog')}
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <h2 className='mb-6 text-sm font-semibold uppercase '>Help center</h2>
+            <h2 className='mb-6 text-sm font-semibold uppercase '>{t('Help_center')}</h2>
             <ul className=' font-medium'>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Discord Server
+                  {t('Discord_server')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Twitter
+                  {t('Twitter')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Facebook
+                  {t('Facebook')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Contact Us
+                  {t('Contact_us')}
                 </a>
               </li>
             </ul>
@@ -63,42 +67,42 @@ const Footer = () => {
             <ul className=' font-medium'>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Privacy Policy
+                 {t('Privacy_Policy')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Licensing
+                  {t('Licensing')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Terms &amp; Conditions
+                  {t('Terms_and_conditions')}
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <h2 className='mb-6 text-sm font-semibold uppercase '>Download</h2>
+            <h2 className='mb-6 text-sm font-semibold uppercase '>{t('Download')}</h2>
             <ul className=' font-medium'>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  iOS
+                  {t('IOS')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Android
+                  {t('Android')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  Windows
+                  {t('Windows')}
                 </a>
               </li>
               <li className='mb-4'>
                 <a href='#' className='hover:underline'>
-                  MacOS
+                  {t('MacOS')}
                 </a>
               </li>
             </ul>

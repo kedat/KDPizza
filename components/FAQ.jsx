@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Layout from '../components/Layout/Layout';
+import { useTranslation } from 'next-i18next';
+
 
 const FAQ = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -12,15 +14,17 @@ const FAQ = () => {
     }
   };
 
+  const {t} = useTranslation('common');
+
   return (
     <div className=' my-8'>
-      <h2 className='text-3xl font-bold mb-8'>FAQ</h2>
+      <h2 className='text-3xl font-bold mb-8'>{t('FAQ')}</h2>
       <div className=' space-y-4'>
         {/* single Faq */}
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(2)}>
-            <span className='text-lg font-medium'>What is your return policy?</span>
+            <span className='text-lg font-medium'>{t('What_is_your_return_policy')}</span>
             {activeTab === 2 ? (
               <svg className='h-6 w-6 ' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
@@ -34,10 +38,7 @@ const FAQ = () => {
           {activeTab === 2 && (
             <div className='mt-4'>
               <p className='text-base'>
-                {`If you're not satisfied with your purchase, we accept returns
-                within 30 days of delivery. To initiate a return, please email
-                us at support@myecommercestore.com with your order number and a
-                brief explanation of why you're returning the item.`}
+                {t('What_is_your_return_policy_reply')}
               </p>
             </div>
           )}
@@ -45,7 +46,7 @@ const FAQ = () => {
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(3)}>
-            <span className='text-lg font-medium'>How do I track my order?</span>
+            <span className='text-lg font-medium'>{t('How_do_I_track_my_order')}</span>
             {activeTab === 3 ? (
               <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
@@ -59,8 +60,7 @@ const FAQ = () => {
           {activeTab === 3 && (
             <div className='mt-4'>
               <p className='text-base'>
-                You can track your order by clicking the tracking link in your shipping confirmation email, or by
-                logging into your account on our website and viewing the order details.
+                {t('How_do_I_track_my_order_reply')}
               </p>
             </div>
           )}
@@ -68,7 +68,7 @@ const FAQ = () => {
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(4)}>
-            <span className='text-lg font-medium text-left'>How do I contact customer support?</span>
+            <span className='text-lg font-medium text-left'>{t('How_do_I_contact_customer_support')} </span>
             {activeTab === 4 ? (
               <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
@@ -82,8 +82,7 @@ const FAQ = () => {
           {activeTab === 4 && (
             <div className='mt-4'>
               <p className='text-base'>
-                You can contact our customer support team by emailing us at support@myecommercestore.com, or by calling
-                us at (555) 123-4567 between the hours of 9am and 5pm EST, Monday through Friday.
+                {t('How_do_I_contact_customer_support_reply')}
               </p>
             </div>
           )}
@@ -91,7 +90,7 @@ const FAQ = () => {
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(5)}>
-            <span className='text-lg font-medium text-left'>Can I change or cancel my order?</span>
+            <span className='text-lg font-medium text-left'>{t('Can_I_change_or_cancel_my_order')} </span>
             {activeTab === 5 ? (
               <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
@@ -105,8 +104,7 @@ const FAQ = () => {
           {activeTab === 5 && (
             <div className='mt-4'>
               <p className='text-base'>
-                {`Unfortunately, once an order has been placed, we are not able to make changes or cancellations. If you
-                no longer want the items you've ordered, you can return them for a refund within 30 days of delivery.`}
+                {t('Can_I_change_or_cancel_my_order_reply')}
               </p>
             </div>
           )}
@@ -114,7 +112,7 @@ const FAQ = () => {
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(6)}>
-            <span className='text-lg font-medium text-left'>Do you offer international shipping?</span>
+            <span className='text-lg font-medium text-left'>{t('Do_you_offer_international_shipping')} </span>
             {activeTab === 6 ? (
               <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
@@ -127,14 +125,14 @@ const FAQ = () => {
           </button>
           {activeTab === 6 && (
             <div className='mt-4'>
-              <p className='text-base'>Currently, we only offer shipping within the United States.</p>
+              <p className='text-base'>{t('Do_you_offer_international_shipping_reply')} </p>
             </div>
           )}
         </div>
 
         <div className='border-b border-gray-200 pb-4'>
           <button className='flex items-center justify-between w-full' onClick={() => toggleTab(7)}>
-            <span className='text-lg font-medium text-left'>What payment methods do you accept?</span>
+            <span className='text-lg font-medium text-left'>{t('What_payment_methods_do_you_accept')} </span>
             {activeTab === 7 ? (
               <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
@@ -148,7 +146,7 @@ const FAQ = () => {
           {activeTab === 7 && (
             <div className='mt-4'>
               <p className='text-base'>
-                We accept visa,mastercard,paypal payment method also we have cash on delivery system.
+              {t('What_payment_methods_do_you_accept_reply')}
               </p>
             </div>
           )}
