@@ -5,33 +5,32 @@ import categoryImg02 from '../assets/category-02.png';
 import categoryImg03 from '../assets/category-03.png';
 import categoryImg04 from '../assets/category-04.png';
 import { useTranslation } from 'next-i18next';
+const categoryData = [
 
+  {
+    display: 'Fast Food',
+    imgUrl: categoryImg01,
+  },
+  {
+    display: 'Pizza',
+    imgUrl: categoryImg02,
+  },
+
+  {
+    display: 'Asian Food',
+    imgUrl: categoryImg03,
+  },
+
+  {
+    display: 'Row meat',
+    imgUrl: categoryImg04,
+  },
+];
 
 
 
 const Category = () => {
-  const { t } = useTranslation('common');
-  const categoryData = [
   
-    {
-      display: <p>{t('Fast_food')} </p>,
-      imgUrl: categoryImg01,
-    },
-    {
-      display: <p>{t('Pizza')} </p>,
-      imgUrl: categoryImg02,
-    },
-  
-    {
-      display: <p>{t('Asian_food')} </p>,
-      imgUrl: categoryImg03,
-    },
-  
-    {
-      display: <p>{t('Row_meat')} </p>,
-      imgUrl: categoryImg04,
-    },
-  ];
   
   return (
     <div className='grid md:grid-cols-4 gap-10 my-10 3xl:my-16'>
