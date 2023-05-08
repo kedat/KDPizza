@@ -8,7 +8,7 @@ import { useTranslation } from 'next-i18next';
 const categoryData = [
 
   {
-    display: 'Fast Food',
+    display: 'Fast_food',
     imgUrl: categoryImg01,
   },
   {
@@ -17,12 +17,12 @@ const categoryData = [
   },
 
   {
-    display: 'Asian Food',
+    display: 'Asian_food',
     imgUrl: categoryImg03,
   },
 
   {
-    display: 'Row meat',
+    display: 'Row_meat',
     imgUrl: categoryImg04,
   },
 ];
@@ -30,7 +30,7 @@ const categoryData = [
 
 
 const Category = () => {
-  
+  const {t} = useTranslation('common');
   
   return (
     <div className='grid md:grid-cols-4 gap-10 my-10 3xl:my-16'>
@@ -40,7 +40,7 @@ const Category = () => {
           key={index}
         >
           <Image src={item.imgUrl} alt='category__item' />
-          <p className='font-normal'>{item.display}</p>
+          <p className='font-normal'>{t(item.display)}</p>
         </div>
       ))}
     </div>
