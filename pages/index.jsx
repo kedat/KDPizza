@@ -31,7 +31,6 @@ const Home = ({ pizzas, categories }) => {
         </Head>
         {/* body */}
         <main className=' dark:bg-gray-900'>
-          <ChatBot />
           <Banner />
           <Category />
           <Services />
