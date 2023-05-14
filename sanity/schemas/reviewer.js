@@ -10,6 +10,11 @@ export default {
             type: 'number',
         },
         {
+            name: 'productId',
+            title: 'productId',
+            type: 'number',
+        },
+        {
             name: 'ReviewName',
             title: 'Name',
             type: 'string',
