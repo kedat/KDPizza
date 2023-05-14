@@ -1,6 +1,4 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Image from 'next/image';
 import nawawi from '/assets/banner/pexels-ahmad-nawawi-2714722.jpg';
 import eyer from '/assets/banner/pexels-edward-eyer-1049620.jpg';

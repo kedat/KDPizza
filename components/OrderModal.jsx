@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { resetCart } from '../store/cardSlice';
 import { useDispatch } from 'react-redux';
 
-const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
+const OrderModal = ({ opened = false, setOpened, paymentMethod, pizzas }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const theme = useMantineTheme();
@@ -24,7 +24,7 @@ const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      const payload = { ...formData, total, paymentMethod, userName };
+      const payload = { ...formData, total, paymentMethod, userName, pizzas };
       const id = await createOrder(payload);
       toast.success('Order Placed');
       dispatch(resetCart());
@@ -33,7 +33,7 @@ const OrderModal = ({ opened = false, setOpened, paymentMethod }) => {
       }
       router.push(`/order/${id}`);
     },
-    [formData, total, paymentMethod, userName, dispatch, router],
+    [formData, total, paymentMethod, userName, pizzas, dispatch, router],
   );
 
   return (
