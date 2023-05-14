@@ -41,7 +41,7 @@ const AllPizza = ({ pizzas, categories }) => {
               map(pizzas, (pizza) => (
                 <tr key={pizza._id}>
                   <td className='border px-8 py-4'>{pizza.name.slice(0, 20)}</td>
-                  <td className='border px-8 py-4'>{pizza.details.slice(0, 20)}...</td>
+                  <td className='border px-8 py-4'>{pizza.details?.slice(0, 20)}...</td>
                   <td className='border px-8 py-4'>
                     {
                       // filter(categories, (category) => {
