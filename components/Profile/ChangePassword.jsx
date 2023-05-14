@@ -89,7 +89,7 @@ const ChangePassword = () => {
             required
             {...register('password')}
           />
-          <p>{errors.password?.message}</p>
+          <p className='mt-1 text-red-600'>{errors.password?.message}</p>
         </div>
         <div className='mb-6'>
           <label htmlFor='password' className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
@@ -101,7 +101,7 @@ const ChangePassword = () => {
             required
             {...register('confirmPassword')}
           />
-          <p>{errors.confirmPassword?.message}</p>
+          <p className='mt-1 text-red-600'>{errors.confirmPassword?.message}</p>
         </div>
         <button
           type='submit'
