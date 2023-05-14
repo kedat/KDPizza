@@ -6,4 +6,15 @@ import admin from './admin'
 import faq from './faq'
 import reviewer from './reviewer'
 import hamburger from './hamburger'
-export const schemaTypes = [pizza, order, category, users, admin, faq, reviewer, hamburger]
+import paymentType from './paymentType'
+export const schemaTypes = [
+  pizza,
+  order,
+  category,
+  users,
+  admin,
+  faq,
+  reviewer,
+  hamburger,
+  paymentType,
+]
