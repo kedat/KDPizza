@@ -6,7 +6,7 @@ export default {
     fields: [
         {
             name: 'id',
-            title: 'id',
+            title: 'Id',
             type: 'number',
         },
         {
@@ -16,7 +16,7 @@ export default {
         },
         {
             name: 'review',
-            title: 'review',
+            title: 'Review',
             type: 'string',
         },
     ],
