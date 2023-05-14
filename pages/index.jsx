@@ -12,7 +12,6 @@ import Layout from '../components/Layout/Layout';
 import SetTheme from '../components/SetTheme';
 import Banner from '../components/Banner/Banner';
 import FAQ from '../components/FAQ';
-import ChatBot from '../components/ChatBot';
 
 const Home = ({ pizzas, categories }) => {
   const router = useRouter();
