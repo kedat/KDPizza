@@ -18,7 +18,7 @@ const AllOrder = ({ orders }) => {
       .then(() => {
         setShowConfirmModal(false);
         toast.success('Delete successfully');
-        router.push('/admin');
+        router.reload();
       })
       .catch((err) => {
         console.error('Delete failed: ', err.message);

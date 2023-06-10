@@ -10,6 +10,7 @@ import Layout from '../../components/Layout/Layout';
 import { cancelOrder } from '../../lib/orderHandle';
 import { toast, Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import { map } from 'lodash';
 
 export const getServerSideProps = async ({ params }) => {
   const query = `*[_type=='order' && _id=='${params.id}']`;
@@ -21,20 +22,21 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 const Orders = ({ order }) => {
+  const { status, _id, name, item } = order;
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    if (order.status > 3) {
+    if (status > 3) {
       localStorage.removeItem('order');
     }
-  }, [order]);
+  }, [order, status]);
 
   const onCancelOrder = useCallback(async () => {
-    client.patch(order._id).inc({ status: 4 }).commit();
+    client.patch(_id).inc({ status: 4 }).commit();
     toast.success('Canceled');
     localStorage.removeItem('order');
     router.push('/');
-  }, [order, router]);
+  }, [_id, router]);
 
   return (
     <Layout>
@@ -43,11 +45,11 @@ const Orders = ({ order }) => {
         <div className={css.details}>
           <div className='flex md:flex-row flex-col'>
             <span>Order ID</span>
-            <span>{order._id}</span>
+            <span>{_id}</span>
           </div>
           <div className='flex md:flex-row flex-col'>
             <span>Customer Name</span>
-            <span>{order.name}</span>
+            <span>{name}</span>
           </div>
           <div className='flex md:flex-row flex-col'>
             <span>Customer Phone</span>
@@ -60,6 +62,17 @@ const Orders = ({ order }) => {
           <div className='flex md:flex-row flex-col'>
             <span>Total</span>
             <span>$ {order.total}</span>
+          </div>
+          <div className='flex md:flex-row flex-col'>
+            <span>Item</span>
+            <span className='flex flex-col'>
+              {item?.map((i, index) => (
+                <p key={index}>
+                  <span className='mr-1'>{i.quantity}</span>
+                  <span>{i.name}</span>
+                </p>
+              ))}
+            </span>
           </div>
         </div>
         <div className={`${css.statusContainer} flex md:flex-row flex-col !gap-28`}>
@@ -82,13 +95,13 @@ const Orders = ({ order }) => {
           <div className={css.status}>
             <Image src={Cooking} alt='Cooking' width={50} height={50} />
             <span>Cooking</span>
-            {order.status === 1 && (
+            {status === 1 && (
               <div className={css.spinner}>
                 <Image src={Spinner} alt='Spinner' />
               </div>
             )}
 
-            {order.status > 1 && (
+            {status > 1 && (
               <span className='inline-flex items-center bg-green-100 text-green-800 text-base font-medium mr-2 px-2.5 py-2 rounded-full dark:bg-green-900 dark:text-green-300'>
                 <span className='w-3 h-3 mr-1 bg-green-500 rounded-full'></span>
                 Completed
@@ -99,12 +112,12 @@ const Orders = ({ order }) => {
           <div className={css.status}>
             <Image src={onWay} alt='On the Way' width={50} height={50} />
             <span className='-mx-1'>On way</span>
-            {order.status === 2 && (
+            {status === 2 && (
               <div className={css.spinner}>
                 <Image src={Spinner} alt='Spinner' />
               </div>
             )}
-            {order.status > 2 && (
+            {status > 2 && (
               <span className='inline-flex items-center bg-green-100 text-green-800 text-base font-medium mr-2 px-2.5 py-2 rounded-full dark:bg-green-900 dark:text-green-300'>
                 <span className='w-3 h-3 mr-1 bg-green-500 rounded-full'></span>
                 Completed
@@ -115,12 +128,12 @@ const Orders = ({ order }) => {
           <div className={css.status}>
             <UilBox width={50} height={50} />
             <span>Delivered</span>
-            {order.status === 3 && (
+            {status === 3 && (
               <div className={css.spinner}>
                 <Image src={Spinner} alt='Spinner' />
               </div>
             )}
-            {order.status === 4 && (
+            {status === 4 && (
               <span className='inline-flex items-center bg-green-100 text-green-800 text-base font-medium mr-2 px-2.5 py-2 rounded-full dark:bg-green-900 dark:text-green-300'>
                 <span className='w-3 h-3 mr-1 bg-green-500 rounded-full'></span>
                 Completed
@@ -130,7 +143,7 @@ const Orders = ({ order }) => {
         </div>
         <div
           className={`flex justify-end bg-red-500 text-white px-4 py-2 rounded-md ${
-            order.status > 2 && 'pointer-events-none opacity-50'
+            status > 2 && 'pointer-events-none opacity-50'
           }`}
         >
           <button
