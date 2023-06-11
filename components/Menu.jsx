@@ -4,12 +4,12 @@ import { urlFor } from '../lib/client';
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
 
-const Menu = ({ pizzas, categories, hamburgers }) => {
+const Menu = ({ pizzas, categories, hamburgers, teas }) => {
   const [category, setCategory] = useState(0);
   const onChangeCategory = useCallback((e) => {
     setCategory(e.target.value);
   }, []);
-  const allFood = pizzas.concat(hamburgers);
+  const allFood = pizzas.concat(hamburgers,teas);
   const newPizzas = allFood.filter((item) => {
     if (item.categoryId == category) {
       return item;

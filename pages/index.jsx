@@ -14,7 +14,7 @@ import Banner from '../components/Banner/Banner';
 import FAQ from '../components/FAQ';
 import Facebook from '../components/Facebook';
 
-const Home = ({ pizzas, categories, hamburgers }) => {
+const Home = ({ pizzas, categories, hamburgers, teas }) => {
   const router = useRouter();
 
   return (
@@ -36,7 +36,7 @@ const Home = ({ pizzas, categories, hamburgers }) => {
           <Category />
           <Services />
           <MainCarousel />
-          <Menu pizzas={pizzas} categories={categories} hamburgers={hamburgers} />
+          <Menu pizzas={pizzas} categories={categories} hamburgers={hamburgers} teas={teas} />
           <FAQ />
         </main>
       </div>
@@ -50,14 +50,17 @@ export const getServerSideProps = async () => {
   const query = '*[_type=="pizza"]';
   const categoryQuery = '*[_type=="category"]';
   const hamburgerQuery = '*[_type=="hamburger"]';
+  const teaQuery = '*[_type=="tea"]';
   const pizzas = await client.fetch(query);
   const categories = await client.fetch(categoryQuery);
   const hamburgers = await client.fetch(hamburgerQuery);
+  const teas = await client.fetch(teaQuery);
   return {
     props: {
       pizzas,
       categories,
       hamburgers,
+      teas,
     },
   };
 };
