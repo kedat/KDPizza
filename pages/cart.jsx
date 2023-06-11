@@ -124,7 +124,7 @@ const Cart = () => {
               <button className='btn dark:!text-gray-300' onClick={onHandleDelivery}>
                 Pay on Delivery
               </button>
-              <button className='btn' onClick={onHandleCheckout}>
+              <button className='btn dark:!text-gray-300 !min-w-[160px]' onClick={onHandleCheckout}>
                 Pay now
               </button>
             </div>

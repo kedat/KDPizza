@@ -4,12 +4,13 @@ import { urlFor } from '../lib/client';
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
 
-const Menu = ({ pizzas, categories }) => {
+const Menu = ({ pizzas, categories, hamburgers }) => {
   const [category, setCategory] = useState(0);
   const onChangeCategory = useCallback((e) => {
     setCategory(e.target.value);
   }, []);
-  const newPizzas = pizzas.filter((item) => {
+  const allFood = pizzas.concat(hamburgers);
+  const newPizzas = allFood.filter((item) => {
     if (item.categoryId == category) {
       return item;
     }
@@ -45,7 +46,7 @@ const Menu = ({ pizzas, categories }) => {
               const src = urlFor(pizza.image).url();
               return (
                 <div className={`${css.pizza}`} key={id}>
-                  <Link href={`./pizza/${pizza.slug.current}`}>
+                  <Link href={`./${pizza._type}/${pizza.slug.current}`}>
                     <div className={css.ImageWrapper}>
                       <Image
                         loader={() => src}
@@ -54,7 +55,6 @@ const Menu = ({ pizzas, categories }) => {
                         objectFit='cover'
                         layout='fill'
                         className='hover:scale-[1.1] hover:cursor-pointer'
-                        unoptimized
                       />
                     </div>
                   </Link>
@@ -65,7 +65,7 @@ const Menu = ({ pizzas, categories }) => {
                 </div>
               );
             })
-          : pizzas.map((pizza, id) => {
+          : allFood.map((pizza, id) => {
               const src = urlFor(pizza.image).url();
               return (
                 <div className={`${css.pizza}`} key={id}>
