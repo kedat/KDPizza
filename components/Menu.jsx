@@ -4,12 +4,12 @@ import { urlFor } from '../lib/client';
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
 
-const Menu = ({ pizzas, categories, hamburgers, teas }) => {
+const Menu = ({ pizzas, categories, hamburgers, teas, drinks, asianFoods }) => {
   const [category, setCategory] = useState(0);
   const onChangeCategory = useCallback((e) => {
     setCategory(e.target.value);
   }, []);
-  const allFood = pizzas.concat(hamburgers,teas);
+  const allFood = pizzas.concat(hamburgers, teas, drinks, asianFoods);
   const newPizzas = allFood.filter((item) => {
     if (item.categoryId == category) {
       return item;
@@ -43,52 +43,52 @@ const Menu = ({ pizzas, categories, hamburgers, teas }) => {
       <div className={css.menu}>
         {newPizzas.length > 0
           ? newPizzas.map((pizza, id) => {
-              const src = urlFor(pizza.image).url();
-              return (
-                <div className={`${css.pizza}`} key={id}>
-                  <Link href={`./${pizza._type}/${pizza.slug.current}`}>
-                    <div className={css.ImageWrapper}>
-                      <Image
-                        loader={() => src}
-                        src={src}
-                        alt='pizza'
-                        objectFit='cover'
-                        layout='fill'
-                        className='hover:scale-[1.1] hover:cursor-pointer'
-                      />
-                    </div>
-                  </Link>
-                  <span>{pizza.name}</span>
-                  <span>
-                    <span className='text-red-500'>$</span> {pizza.price[1]}
-                  </span>
-                </div>
-              );
-            })
+            const src = urlFor(pizza.image).url();
+            return (
+              <div className={`${css.pizza}`} key={id}>
+                <Link href={`./${pizza._type}/${pizza.slug.current}`}>
+                  <div className={css.ImageWrapper}>
+                    <Image
+                      loader={() => src}
+                      src={src}
+                      alt='pizza'
+                      objectFit='cover'
+                      layout='fill'
+                      className='hover:scale-[1.1] hover:cursor-pointer'
+                    />
+                  </div>
+                </Link>
+                <span>{pizza.name}</span>
+                <span>
+                  <span className='text-red-500'>$</span> {pizza.price[1]}
+                </span>
+              </div>
+            );
+          })
           : allFood.map((pizza, id) => {
-              const src = urlFor(pizza.image).url();
-              return (
-                <div className={`${css.pizza}`} key={id}>
-                  <Link href={`./${pizza._type}/${pizza.slug.current}`}>
-                    <div className={css.ImageWrapper}>
-                      <Image
-                        loader={() => src}
-                        src={src}
-                        alt='pizza'
-                        objectFit='cover'
-                        layout='fill'
-                        className='hover:scale-[1.1] hover:cursor-pointer'
-                        unoptimized
-                      />
-                    </div>
-                  </Link>
-                  <span>{pizza.name}</span>
-                  <span>
-                    <span className='text-red-500'>$</span> {pizza.price[1]}
-                  </span>
-                </div>
-              );
-            })}
+            const src = urlFor(pizza.image).url();
+            return (
+              <div className={`${css.pizza}`} key={id}>
+                <Link href={`./${pizza._type}/${pizza.slug.current}`}>
+                  <div className={css.ImageWrapper}>
+                    <Image
+                      loader={() => src}
+                      src={src}
+                      alt='pizza'
+                      objectFit='cover'
+                      layout='fill'
+                      className='hover:scale-[1.1] hover:cursor-pointer'
+                      unoptimized
+                    />
+                  </div>
+                </Link>
+                <span>{pizza.name}</span>
+                <span>
+                  <span className='text-red-500'>$</span> {pizza.price[1]}
+                </span>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ import Banner from '../components/Banner/Banner';
 import FAQ from '../components/FAQ';
 import Facebook from '../components/Facebook';
 
-const Home = ({ pizzas, categories, hamburgers, teas }) => {
+const Home = ({ pizzas, categories, hamburgers, teas, drinks, asianFoods }) => {
   const router = useRouter();
 
   return (
@@ -36,7 +36,7 @@ const Home = ({ pizzas, categories, hamburgers, teas }) => {
           <Category />
           <Services />
           <MainCarousel />
-          <Menu pizzas={pizzas} categories={categories} hamburgers={hamburgers} teas={teas} />
+          <Menu pizzas={pizzas} categories={categories} hamburgers={hamburgers} teas={teas} drinks={drinks} asianFoods={asianFoods} />
           <FAQ />
         </main>
       </div>
@@ -51,16 +51,22 @@ export const getServerSideProps = async () => {
   const categoryQuery = '*[_type=="category"]';
   const hamburgerQuery = '*[_type=="hamburger"]';
   const teaQuery = '*[_type=="tea"]';
+  const drinkQuery = '*[_type=="drink"]';
+  const asianFoodQuery = '*[_type=="asianFood"]';
   const pizzas = await client.fetch(query);
   const categories = await client.fetch(categoryQuery);
   const hamburgers = await client.fetch(hamburgerQuery);
   const teas = await client.fetch(teaQuery);
+  const drinks = await client.fetch(drinkQuery);
+  const asianFoods = await client.fetch(asianFoodQuery);
   return {
     props: {
       pizzas,
       categories,
       hamburgers,
       teas,
+      drinks,
+      asianFoods,
     },
   };
 };
