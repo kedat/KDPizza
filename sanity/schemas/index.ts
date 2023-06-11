@@ -7,6 +7,9 @@ import faq from './faq'
 import reviewer from './reviewer'
 import hamburger from './hamburger'
 import paymentType from './paymentType'
+import tea from './tea'
+import asianFood from './asianFood'
+import drink from './drink'
 export const schemaTypes = [
   pizza,
   order,
@@ -17,4 +20,7 @@ export const schemaTypes = [
   reviewer,
   hamburger,
   paymentType,
+  tea,
+  asianFood,
+  drink,
 ]
