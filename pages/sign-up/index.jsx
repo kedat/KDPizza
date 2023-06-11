@@ -135,7 +135,7 @@ const SignUp = ({ users }) => {
             placeholder='Confirm Password...'
             {...register('confirmPassword')}
           />
-          <p>{errors.confirmPassword?.message}</p>
+          <p className='text-red-500 mt-2'>{errors.confirmPassword?.message}</p>
         </div>
         <button className='bg-black text-white p-3 rounded-md cursor-pointer' type='submit'>
           {loading ? <Loading /> : 'Sign up'}
