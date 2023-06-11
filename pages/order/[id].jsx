@@ -10,6 +10,8 @@ import Layout from '../../components/Layout/Layout';
 import { cancelOrder } from '../../lib/orderHandle';
 import { toast, Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import { map } from 'lodash';
+import { getOrderDetail } from '../../lib/getOrderDetail';
 
 export const getServerSideProps = async ({ params }) => {
   const query = `*[_type=='order' && _id=='${params.id}']`;
@@ -20,34 +22,49 @@ export const getServerSideProps = async ({ params }) => {
     },
   };
 };
+
 const Orders = ({ order }) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [orderInfo, setOderInfo] = useState({});
   const router = useRouter();
-  useEffect(() => {
-    if (order.status > 3) {
-      localStorage.removeItem('order');
+
+  const { _id } = order;
+  const getOrderInfo = useCallback(async () => {
+    try {
+      const { documents } = await getOrderDetail(_id);
+      await setOderInfo(documents[0]);
+    } catch (e) {
+      if (e instanceof Error) {
+        toast.error(e.message);
+      }
     }
-  }, [order]);
+  }, [_id]);
+
+  useEffect(() => {
+    getOrderInfo();
+  }, [getOrderInfo]);
+
+  const { status, name, item } = orderInfo;
 
   const onCancelOrder = useCallback(async () => {
-    client.patch(order._id).inc({ status: 4 }).commit();
+    client.patch(_id).set({ status: -1 }).commit();
     toast.success('Canceled');
     localStorage.removeItem('order');
     router.push('/');
-  }, [order, router]);
+  }, [_id, router]);
 
   return (
     <Layout>
-      <div className={`${css.container} md:pt-48 pt-24 `}>
+      <div className={`${css.container} md:pt-48 pt-24`}>
         <span className={css.heading}>Order in Process</span>
         <div className={css.details}>
           <div className='flex md:flex-row flex-col'>
             <span>Order ID</span>
-            <span>{order._id}</span>
+            <span>{_id}</span>
           </div>
           <div className='flex md:flex-row flex-col'>
             <span>Customer Name</span>
-            <span>{order.name}</span>
+            <span>{name}</span>
           </div>
           <div className='flex md:flex-row flex-col'>
             <span>Customer Phone</span>
@@ -60,6 +77,17 @@ const Orders = ({ order }) => {
           <div className='flex md:flex-row flex-col'>
             <span>Total</span>
             <span>$ {order.total}</span>
+          </div>
+          <div className='flex md:flex-row flex-col'>
+            <span>Item</span>
+            <span className='flex flex-col'>
+              {item?.map((i, index) => (
+                <p key={index}>
+                  <span className='mr-1'>{i.quantity}</span>
+                  <span>{i.name}</span>
+                </p>
+              ))}
+            </span>
           </div>
         </div>
         <div className={`${css.statusContainer} flex md:flex-row flex-col !gap-28`}>
@@ -82,16 +110,22 @@ const Orders = ({ order }) => {
           <div className={css.status}>
             <Image src={Cooking} alt='Cooking' width={50} height={50} />
             <span>Cooking</span>
-            {order.status === 1 && (
+            {status === 1 && (
               <div className={css.spinner}>
                 <Image src={Spinner} alt='Spinner' />
               </div>
             )}
 
-            {order.status > 1 && (
+            {status > 1 && (
               <span className='inline-flex items-center bg-green-100 text-green-800 text-base font-medium mr-2 px-2.5 py-2 rounded-full dark:bg-green-900 dark:text-green-300'>
                 <span className='w-3 h-3 mr-1 bg-green-500 rounded-full'></span>
                 Completed
+              </span>
+            )}
+            {status == -1 && (
+              <span className='inline-flex items-center bg-red-300 text-green-800 text-base font-medium mr-2 px-2.5 py-2 rounded-full dark:bg-green-900 dark:text-green-300'>
+                <span className='w-3 h-3 mr-1 bg-green-500 rounded-full'></span>
+                Canceled
               </span>
             )}
           </div>
@@ -99,15 +133,21 @@ const Orders = ({ order }) => {
           <div className={css.status}>
             <Image src={onWay} alt='On the Way' width={50} height={50} />
             <span className='-mx-1'>On way</span>
-            {order.status === 2 && (
+            {status === 2 && (
               <div className={css.spinner}>
                 <Image src={Spinner} alt='Spinner' />
               </div>
             )}
-            {order.status > 2 && (
+            {status > 2 && (
               <span className='inline-flex items-center bg-green-100 text-green-800 text-base font-medium mr-2 px-2.5 py-2 rounded-full dark:bg-green-900 dark:text-green-300'>
                 <span className='w-3 h-3 mr-1 bg-green-500 rounded-full'></span>
                 Completed
+              </span>
+            )}
+            {status == -1 && (
+              <span className='inline-flex items-center bg-red-300 text-green-800 text-base font-medium mr-2 px-2.5 py-2 rounded-full dark:bg-green-900 dark:text-green-300'>
+                <span className='w-3 h-3 mr-1 bg-green-500 rounded-full'></span>
+                Canceled
               </span>
             )}
           </div>
@@ -115,12 +155,18 @@ const Orders = ({ order }) => {
           <div className={css.status}>
             <UilBox width={50} height={50} />
             <span>Delivered</span>
-            {order.status === 3 && (
+            {status === 3 && (
               <div className={css.spinner}>
                 <Image src={Spinner} alt='Spinner' />
               </div>
             )}
-            {order.status === 4 && (
+            {status == -1 && (
+              <span className='inline-flex items-center bg-red-300 text-green-800 text-base font-medium mr-2 px-2.5 py-2 rounded-full dark:bg-green-900 dark:text-green-300'>
+                <span className='w-3 h-3 mr-1 bg-green-500 rounded-full'></span>
+                Canceled
+              </span>
+            )}
+            {status === 4 && (
               <span className='inline-flex items-center bg-green-100 text-green-800 text-base font-medium mr-2 px-2.5 py-2 rounded-full dark:bg-green-900 dark:text-green-300'>
                 <span className='w-3 h-3 mr-1 bg-green-500 rounded-full'></span>
                 Completed
@@ -130,7 +176,7 @@ const Orders = ({ order }) => {
         </div>
         <div
           className={`flex justify-end bg-red-500 text-white px-4 py-2 rounded-md ${
-            order.status > 2 && 'pointer-events-none opacity-50'
+            status > 2 && 'pointer-events-none opacity-50'
           }`}
         >
           <button
@@ -138,6 +184,7 @@ const Orders = ({ order }) => {
             onClick={() => {
               setShowConfirmModal(true);
             }}
+            disabled={status == -1 || status >= 3}
           >
             <UilCancel width={20} height={20} />
             Cancel this order
@@ -164,7 +211,7 @@ const Orders = ({ order }) => {
                     d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
                   ></path>
                 </svg>
-                <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>Delete</h3>
+                <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>Cancel this order?</h3>
                 <button
                   data-modal-hide='popup-modal'
                   type='button'
@@ -179,7 +226,7 @@ const Orders = ({ order }) => {
                   type='button'
                   className='text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600'
                 >
-                  No, cancel
+                  No, keep this order
                 </button>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { client } from '../../lib/client';
 import { toast, Toaster } from 'react-hot-toast';
 import AllOrder from './Order/Orders';

@@ -18,7 +18,7 @@ const AllOrder = ({ orders }) => {
       .then(() => {
         setShowConfirmModal(false);
         toast.success('Delete successfully');
-        router.push('/admin');
+        router.reload();
       })
       .catch((err) => {
         console.error('Delete failed: ', err.message);
@@ -55,7 +55,7 @@ const AllOrder = ({ orders }) => {
                   {order.status === 2 && <td className='border px-8 py-4'>On way</td>}
                   {order.status === 3 && <td className='border px-8 py-4'>Delivered</td>}
                   {order.status === 4 && <td className='border px-8 py-4'>Completed</td>}
-                  {order.status === 5 && <td className='border px-8 py-4'>Canceled</td>}
+                  {order.status === -1 && <td className='border px-8 py-4'>Canceled</td>}
                   <td className='border px-8 py-4'>{order.method === 0 ? 'Pay on Delivery' : 'Online Payment'}</td>
                   <td className='border px-8 py-4'>{order._updatedAt}</td>
                   <td className='border px-8 py-4'>

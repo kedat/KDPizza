@@ -46,6 +46,21 @@ export default {
       type: 'number',
     },
     {
+      name: 'item',
+      title: 'item',
+      type: 'array',
+      of: [
+        {
+          type: "object",
+          name: "foods",
+          fields: [
+            { type: "string", name: "name" },
+            { type: "number", name: "quantity" },
+          ]
+        }
+      ],
+    },
+    {
       name: 'status',
       title: 'Status',
       type: 'number',

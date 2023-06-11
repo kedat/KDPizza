@@ -13,8 +13,9 @@ import SetTheme from '../components/SetTheme';
 import Banner from '../components/Banner/Banner';
 import FAQ from '../components/FAQ';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Facebook from '../components/Facebook';
 
-const Home = ({ pizzas, categories }) => {
+const Home = ({ pizzas, categories, hamburgers }) => {
   const router = useRouter();
   return (
     <Layout>
@@ -25,17 +26,18 @@ const Home = ({ pizzas, categories }) => {
           <link
             rel='icon'
             type='image/x-icon'
-            href='https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/262025650_1280619415787717_6337152687439208814_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=H8xbCdl3f8AAX_X4sIE&_nc_ht=scontent.fvii1-1.fna&oh=00_AfCbkyzPH0Dy2OmXFed_gSlFdf4Dgyscm6heZ2P0Yb8xXw&oe=6404C37E'
+            href='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Rave_Culture_Logo.jpg/220px-Rave_Culture_Logo.jpg'
           ></link>
         </Head>
         {/* body */}
 
         <main className=' dark:bg-gray-900'>
+          <Facebook />
           <Banner />
           <Category />
           <Services />
           <MainCarousel />
-          <Menu pizzas={pizzas} categories={categories} />
+          <Menu pizzas={pizzas} categories={categories} hamburgers={hamburgers} />
           <FAQ />
         </main>
       </div>
@@ -48,12 +50,15 @@ export default Home;
 export const getServerSideProps = async ({ locale }) => {
   const query = '*[_type=="pizza"]';
   const categoryQuery = '*[_type=="category"]';
+  const hamburgerQuery = '*[_type=="hamburger"]';
   const pizzas = await client.fetch(query);
   const categories = await client.fetch(categoryQuery);
+  const hamburgers = await client.fetch(hamburgerQuery);
   return {
     props: {
       pizzas,
       categories,
+      hamburgers,
       ...(await serverSideTranslations(locale, ['common'], null, ['en', 'vi'])),
     },
   };

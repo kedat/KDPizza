@@ -14,6 +14,11 @@ const Cart = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const pizzas = useSelector((state) => state.cart.pizzas);
+  var newPi = pizzas.map(function (pizza) {
+    return { name: pizza.name, quantity: pizza.quantity };
+  });
+  typeof window !== 'undefined' && localStorage.setItem('newPi', JSON.stringify(newPi));
+
   const [paymentMethod, setPaymentMethod] = useState(1);
   const isLogin = typeof window !== 'undefined' && localStorage.getItem('username');
   const onHandleClickRemove = useCallback(
@@ -119,7 +124,7 @@ const Cart = () => {
               <button className='btn dark:!text-gray-300' onClick={onHandleDelivery}>
                 Pay on Delivery
               </button>
-              <button className='btn' onClick={onHandleCheckout}>
+              <button className='btn dark:!text-gray-300 !min-w-[160px]' onClick={onHandleCheckout}>
                 Pay now
               </button>
             </div>
@@ -130,7 +135,12 @@ const Cart = () => {
       </div>
       <Toaster />
       {/* Modal */}
-      <OrderModal opened={paymentMethod === 0} paymentMethod={paymentMethod} setOpened={setPaymentMethod} />
+      <OrderModal
+        opened={paymentMethod === 0}
+        paymentMethod={paymentMethod}
+        setOpened={setPaymentMethod}
+        pizzas={newPi}
+      />
     </Layout>
   );
 };

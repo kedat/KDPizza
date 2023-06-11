@@ -17,7 +17,6 @@ const UpdateUserComponent = ({ user }) => {
   const router = useRouter();
 
   const schema = yup.object().shape({
-    name: yup.string().required(),
     phone: yup.number().required(),
     email: yup.string().required(),
     status: yup.string().required(),
@@ -33,15 +32,15 @@ const UpdateUserComponent = ({ user }) => {
 
   const onSubmit = useCallback(
     async (data) => {
-      const { name, status, phone, email } = data;
+      const { status, phone, email } = data;
       setLoading(true);
       await client
         .patch(_id) // Document ID to patch
-        .set({ name, status: Number(status), phone, email })
+        .set({ status: Number(status), phone, email })
         .commit()
         .then((updatedOrder) => {
           router.push('/admin');
-          toast.success('Update order successfully');
+          toast.success('Update user successfully');
           setLoading(false);
           console.log(updatedOrder);
         })
@@ -61,12 +60,9 @@ const UpdateUserComponent = ({ user }) => {
             name='floating_name'
             id='floating_name'
             className='block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-            placeholder=' '
-            defaultValue={name}
-            required
-            {...register('name')}
+            value={name}
+            readOnly
           />
-          <p>{errors.name?.message}</p>
           <label
             htmlFor='floating_name'
             className='peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
