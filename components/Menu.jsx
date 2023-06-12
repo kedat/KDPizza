@@ -39,8 +39,7 @@ const Menu = ({ pizzas, categories, hamburgers, teas, drinks, asianFoods }) => {
           })}
       </select>
 
-      {/* pizzas */}
-      <div className={css.menu}>
+      <div className='grid 2xl:grid-cols-4 xl:grid-cols-3 mx-auto gap-20 max-h-[1000px] overflow-y-scroll overflow-x-hidden md:grid-cols-2 grid-cols-1'>
         {newPizzas.length > 0
           ? newPizzas.map((pizza, id) => {
             const src = urlFor(pizza.image).url();

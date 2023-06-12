@@ -9,9 +9,9 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import Layout from '../../components/Layout/Layout';
 
-const Hamburger = ({ hamburger }) => {
+const Drink = ({ drink }) => {
   const dispatch = useDispatch();
-  const src = urlFor(hamburger.image).url();
+  const src = urlFor(drink.image).url();
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState(1);
   const onClickSmall = useCallback(() => {
@@ -34,28 +34,28 @@ const Hamburger = ({ hamburger }) => {
   const addToCard = useCallback(() => {
     dispatch(
       addPizza({
-        ...hamburger,
-        price: hamburger.price[size],
+        ...drink,
+        price: drink.price[size],
         quantity: quantity,
         size: size,
       }),
     );
     toast.success('Added to card!');
-  }, [dispatch, hamburger, size, quantity]);
+  }, [dispatch, drink, size, quantity]);
   return (
     <Layout>
       <div className={`${css.container} flex-col md:flex-row items-center md:pt-48 pt-24 px-2`}>
         <div className={`${css.imageWrapper} md:w-[40%] w-full`}>
-          <Image loader={() => src} src={src} alt='hamburger' objectFit='cover' layout='fill' />
+          <Image loader={() => src} src={src} alt='drink' objectFit='cover' layout='fill' />
         </div>
 
         {/* right side */}
         <div className={`${css.right} mx-10 `}>
-          <span>{hamburger.name}</span>
-          <span>{hamburger.details}</span>
+          <span>{drink.name}</span>
+          <span>{drink.details}</span>
 
           <span>
-            <span className='text-red-500'>$</span> {hamburger.price[size]}
+            <span className='text-red-500'>$</span> {drink.price[size]}
           </span>
           <div className='flex md:gap-[1rem] font-semibold text-[1.6rem] flex-col '>
             <span>Size</span>
@@ -105,10 +105,10 @@ const Hamburger = ({ hamburger }) => {
     </Layout>
   );
 };
-export default Hamburger;
+export default Drink;
 
 export async function getStaticPaths() {
-  const paths = await client.fetch(`*[_type=="hamburger" && defined(slug.current)][].slug.current`);
+  const paths = await client.fetch(`*[_type=="drink" && defined(slug.current)][].slug.current`);
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
     fallback: 'blocking',
@@ -117,10 +117,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { slug = '' } = context.params;
-  const hamburger = await client.fetch(`*[_type=="hamburger" && slug.current=='${slug}'][0]`);
+  const drink = await client.fetch(`*[_type=="drink" && slug.current=='${slug}'][0]`);
   return {
     props: {
-      hamburger,
+      drink,
     },
   };
 }
